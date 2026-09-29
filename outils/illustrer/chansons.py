@@ -585,3 +585,209 @@ def sac_farine(x, y, s=1.0):
          chemin("M -36 -120 Q 0 -140 36 -120 L 26 -140 L -26 -140 Z", "#e9d8b4"),
          texte(0, -46, "FARINE", 22, "#a0693a")]
     return place(m, x, y, s)
+
+
+# ---------------------------------------------------------------------------
+# Deuxième série : fontaine, bergère, poule sur son mur, furet, barque…
+# ---------------------------------------------------------------------------
+
+def source(x, y, s=1.0, pierre="#adb5bd", eau_c="#74c0fc"):
+    """Fontaine de pierre dans les champs : un bassin et un filet d'eau ; (x, y) = milieu au sol."""
+    m = [rect(-40, -230, 80, 200, pierre, rx=8), rect(-50, -250, 100, 30, _assombrir(pierre, 0.85), rx=8),
+         rect(-8, -170, 36, 12, "#868e96", rx=4),
+         chemin("M 26 -164 Q 44 -150 40 -80", stroke=eau_c, sw=8),
+         ellipse(0, -20, 150, 34, _assombrir(pierre, 0.85)), rect(-150, -70, 300, 56, pierre, rx=14),
+         ellipse(0, -70, 146, 22, eau_c), ellipse(40, -72, 30, 6, "#d0ebff")]
+    for k in range(4):
+        m.append(rect(-140 + k * 72, -58, 60, 30, _assombrir(pierre, 0.93), rx=6))
+    return place(m, x, y, s)
+
+
+def mouton_pre(x, y, s=1.0, flip=False, couleur="#f8f9fa", tete="#495057", expr="sourire", mouille=False):
+    """Mouton à quatre pattes, de profil (tête à droite) ; (x, y) = au sol."""
+    m = []
+    for px in (-40, -18, 22, 44):
+        m.append(rect(px - 6, -44, 12, 44, tete, rx=5))
+    for k, (cx, cy, r) in enumerate([(-50, -72, 30), (-20, -88, 34), (18, -88, 34), (48, -72, 28), (0, -62, 40),
+                                     (-30, -56, 26), (32, -56, 26)]):
+        m.append(cercle(cx, cy, r, couleur))
+    m += [ellipse(80, -92, 24, 30, tete, rot=-20), ellipse(62, -112, 14, 7, tete, rot=-30),
+          cercle(70, -116, 14, couleur)]
+    if expr == "dort":
+        m.append(chemin("M 80 -98 q 6 5 12 0", stroke="#fff", sw=3))
+    else:
+        m += [cercle(88, -98, 5, "#fff"), cercle(89, -98, 2.6, ENCRE)]
+    if mouille:
+        for k in range(3):
+            m.append(goutte(-40 + k * 40, -140, 0.5, "#74c0fc"))
+    return place(m, x, y, s, flip=flip)
+
+
+def chaumiere(x, y, s=1.0, mur="#fff4e6", toit="#e0b95b", lumiere=False, porte_ouverte=False):
+    """Petite maison au toit de chaume ; (x, y) = milieu de la base."""
+    m = [rect(-170, -200, 340, 200, mur),
+         chemin("M -210 -180 Q -190 -250 -100 -330 Q 0 -380 100 -330 Q 190 -250 210 -180 Q 0 -200 -210 -180 Z", toit),
+         chemin("M -160 -200 Q -60 -230 40 -300 M -60 -196 Q 40 -240 120 -300 M 60 -196 Q 130 -230 170 -250",
+                stroke=_assombrir(toit, 0.82), sw=5),
+         rect(90, -360, 40, 80, "#adb5bd"),
+         rect(-130, -150, 80, 70, "#fff3bf" if lumiere else "#a5d8ff"),
+         trait(-90, -150, -90, -80, "#8d5524", 5), trait(-130, -115, -50, -115, "#8d5524", 5)]
+    if porte_ouverte:
+        m += [rect(20, -150, 90, 150, "#fff3bf"), poly([(20, -150), (-6, -140), (-6, 6), (20, 0)], "#8d5524")]
+    else:
+        m += [rect(20, -150, 90, 150, "#8d5524", rx=6), cercle(94, -74, 6, OR)]
+    return place(m, x, y, s)
+
+
+def eclair(x, y, s=1.0, couleur="#fcc419"):
+    """Éclair en zigzag ; (x, y) = pointe du haut."""
+    return place(poly([(0, 0), (40, 0), (16, 70), (52, 70), (-10, 190), (8, 100), (-26, 100)], couleur,
+                      stroke="#fff", stroke_width=4), x, y, s)
+
+
+def feu_bois(x, y, s=1.0):
+    """Petit feu de bûches ; (x, y) = au sol."""
+    m = [rect(-60, -18, 120, 18, "#8d5524", rx=8, transform="rotate(-10)"),
+         rect(-60, -18, 120, 18, "#a0693a", rx=8, transform="rotate(10)"),
+         chemin("M -40 -20 Q -50 -80 -10 -120 Q -14 -80 6 -70 Q 10 -110 30 -140 Q 60 -80 40 -20 Z", "#ff922b"),
+         chemin("M -20 -20 Q -24 -60 0 -80 Q 4 -50 16 -50 Q 30 -60 26 -20 Z", "#ffd43b")]
+    return place(m, x, y, s)
+
+
+def mur_pierres(x, y, w=400, h=160, pierre="#ced4da", joint="#868e96"):
+    """Muret de pierres ; (x, y) = coin gauche du haut."""
+    m = [rect(0, 0, w, h, joint, rx=6)]
+    ligne, yy, hh = 0, 4, 36
+    while yy < h - 6:
+        xx = -30 if ligne % 2 else 4
+        while xx < w - 4:
+            lg = 70 + (ligne * 13 + int(xx)) % 30
+            x0, x1 = max(xx, 4), min(xx + lg, w - 4)
+            if x1 - x0 > 10:
+                m.append(rect(x0, yy, x1 - x0, min(hh, h - 4 - yy), pierre, rx=8))
+            xx += lg + 6
+        yy += hh + 6
+        ligne += 1
+    return place(m, x, y)
+
+
+def pain_dur(x, y, s=1.0, rot=0):
+    """Croûton de pain ; (x, y) = centre."""
+    m = [ellipse(0, 0, 40, 18, "#d9a066"), ellipse(0, -4, 32, 11, "#e8b77c"),
+         chemin("M -20 -10 l 8 10 M 0 -12 l 8 10 M 20 -10 l 6 8", stroke="#a0693a", sw=3)]
+    return place(m, x, y, s, rot=rot)
+
+
+def miettes_pain(x, y, s=1.0, graine=1, nb=8):
+    r = random.Random(graine)
+    return place([ellipse(r.uniform(-50, 50), r.uniform(-8, 8), r.uniform(3, 7), r.uniform(2, 4), "#d9a066")
+                  for _ in range(nb)], x, y, s)
+
+
+def bonbon(x, y, s=1.0, couleur="#ff6b6b", rot=0):
+    """Bonbon dans son papier ; (x, y) = centre."""
+    m = [poly([(-22, 0), (-44, -18), (-44, 18)], eclaircir(couleur, 0.3)),
+         poly([(22, 0), (44, -18), (44, 18)], eclaircir(couleur, 0.3)),
+         ellipse(0, 0, 26, 20, couleur), chemin("M -10 -12 Q 0 0 -10 12 M 4 -14 Q 14 0 4 14", stroke="#fff", sw=4, opacity=0.8)]
+    return place(m, x, y, s, rot=rot)
+
+
+def pluie_bonbons(S, nb=14, graine=2, zone=(0, 0, 800, 500)):
+    r = random.Random(graine)
+    couleurs = ("#ff6b6b", "#fcc419", "#51cf66", "#339af0", "#cc5de8", "#ff922b")
+    for k in range(nb):
+        S.add(bonbon(r.uniform(zone[0], zone[2]), r.uniform(zone[1], zone[3]), r.uniform(0.7, 1.1),
+                     couleurs[k % len(couleurs)], r.uniform(-40, 40)))
+
+
+def pomme_arbre(x, y, s=1.0, couleur="#fa5252", rot=0):
+    """Pomme avec queue et feuille ; (x, y) = centre."""
+    m = [cercle(-10, 0, 26, couleur), cercle(10, 0, 26, couleur), ellipse(-10, -10, 7, 10, "#fff", opacity=0.45),
+         chemin("M 0 -22 q 2 -14 8 -20", stroke="#5c3a1e", sw=4), ellipse(18, -36, 12, 6, "#40c057", rot=-30)]
+    return place(m, x, y, s, rot=rot)
+
+
+def pommier(x, y, s=1.0, pommes=("#fa5252", "#ffd43b"), graine=2):
+    """Pommier chargé de pommes ; (x, y) = pied du tronc."""
+    r = random.Random(graine)
+    m = [rect(-24, -220, 48, 220, "#8d5524", rx=12),
+         cercle(-110, -280, 100, "#40c057"), cercle(110, -280, 100, "#40c057"), cercle(0, -360, 120, "#51cf66"),
+         cercle(0, -250, 110, "#51cf66")]
+    for k in range(10):
+        m.append(pomme_arbre(r.uniform(-170, 170), r.uniform(-420, -210), 0.7, pommes[k % len(pommes)]))
+    return place(m, x, y, s)
+
+
+def tapis_jeu(x, y, rx=200, ry=40, couleur="#e03131", bord="#fcc419"):
+    return g([ellipse(x, y, rx + 10, ry + 8, bord), ellipse(x, y, rx, ry, couleur)])
+
+
+def maillet(x, y, s=1.0, rot=0, couleur="#fa5252"):
+    """Maillet en mousse, pour jouer ; (x, y) = bout du manche."""
+    m = [rect(-6, -130, 12, 130, "#ffd43b", rx=5), rect(-44, -170, 88, 50, couleur, rx=20),
+         rect(-36, -164, 16, 38, "#fff", rx=6, opacity=0.35)]
+    return place(m, x, y, s, rot=rot)
+
+
+def potager(S, y=560, graine=3):
+    """Jardin potager : terre en rangs sous un ciel clair."""
+    ciel(S, "#a5d8ff", "#fff9db")
+    S.add(nuage(160, 120, 0.7), nuage(620, 90, 0.6))
+    collines(S, y - 20, "#b2f2bb", graine=graine)
+    S.add(rect(0, y, 800, 800 - y, "#a0693a"))
+    for k in range(4):
+        yy = y + 30 + k * 60
+        S.add(chemin(f"M 0 {yy} Q 400 {yy - 14} 800 {yy}", stroke="#7c4a1e", sw=10, opacity=0.6))
+
+
+def furet(x, y, s=1.0, couleur="#c9a27c", masque="#6d4c30", flip=False, expr="sourire", rot=0):
+    """Furet qui court, de profil (tête à droite) ; (x, y) = au sol."""
+    fonce = _assombrir(couleur, 0.8)
+    m = [chemin("M -110 -40 Q -170 -60 -190 -20 Q -160 -40 -110 -26 Z", masque),
+         trait(-70, -30, -86, -2, fonce, 12), trait(-50, -30, -36, -2, fonce, 12),
+         trait(40, -30, 30, -2, fonce, 12), trait(58, -30, 74, -2, fonce, 12),
+         ellipse(-10, -44, 110, 30, couleur), ellipse(-10, -34, 90, 14, eclaircir(couleur, 0.5)),
+         ellipse(100, -66, 40, 30, couleur, rot=-10),
+         ellipse(110, -64, 26, 12, masque, rot=-10), cercle(84, -92, 12, couleur), cercle(84, -92, 6, "#ffc9c9"),
+         ellipse(136, -58, 14, 10, eclaircir(couleur, 0.6)), cercle(146, -60, 5, ENCRE)]
+    if expr == "malin":
+        m += [chemin("M 104 -70 q 6 -6 12 0", stroke=ENCRE, sw=3.5), chemin("M 124 -48 q 8 6 16 -2", stroke=ENCRE, sw=3)]
+    else:
+        m += [cercle(112, -68, 6, ENCRE), cercle(114, -70, 2, "#fff"), chemin("M 124 -48 q 8 6 16 -2", stroke=ENCRE, sw=3)]
+    return place(m, x, y, s, flip=flip, rot=rot)
+
+
+def barque(x, y, s=1.0, couleur="#fa5252", bord="#fff3bf", passagers=None, rot=0, voile=None):
+    """Petite barque ; (x, y) = ligne de flottaison au milieu. `passagers` : dessins en coordonnées locales."""
+    m = []
+    if voile:
+        m += [trait(0, -40, 0, -300, "#8d5524", 8), poly([(8, -290), (8, -60), (150, -60)], voile)]
+    if passagers:
+        m.append(g(passagers) if isinstance(passagers, (list, tuple)) else passagers)
+    m += [chemin("M -170 -60 L 170 -60 Q 150 10 90 20 L -90 20 Q -150 10 -170 -60 Z", couleur),
+          rect(-172, -70, 344, 16, bord, rx=8)]
+    return place(m, x, y, s, rot=rot)
+
+
+def eclaboussure(x, y, s=1.0, couleur="#74c0fc"):
+    m = []
+    for k in range(7):
+        a = math.radians(-160 + k * 23)
+        m.append(goutte(math.cos(a) * 90, math.sin(a) * 90 - 10, 0.7, couleur))
+    m.append(ellipse(0, 0, 110, 20, "#d0ebff", opacity=0.9))
+    return place(m, x, y, s)
+
+
+def chene_branches(x, y, s=1.0, feuillage="#2f9e44", feuillage2="#40c057"):
+    """Grand chêne avec une haute branche ; (x, y) = pied du tronc."""
+    m = [chemin("M -40 0 Q -30 -160 -50 -300 L 50 -300 Q 30 -160 40 0 Z", "#8d5524"),
+         chemin("M 20 -260 Q 100 -330 180 -360", stroke="#8d5524", sw=22),
+         cercle(-150, -380, 110, feuillage), cercle(140, -400, 110, feuillage), cercle(0, -470, 140, feuillage2),
+         cercle(-60, -330, 100, feuillage2), cercle(80, -330, 90, feuillage2)]
+    for k, (fx, fy) in enumerate([(-120, -420), (-20, -540), (100, -460), (-160, -320), (60, -380), (170, -330)]):
+        m.append(ellipse(fx, fy, 16, 9, "#2b8a3e", rot=k * 40))
+    return place(m, x, y, s)
+
+
+def marguerite(x, y, s=1.0, tige=70):
+    return fleur(x, y, s, "#ffffff", "#fcc419", tige)

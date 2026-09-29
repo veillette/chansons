@@ -14,7 +14,7 @@ Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
 étape de compilation). Il reprend le moteur du dépôt
 [livres](https://github.com/veillette/livres).
 
-Toutes les chansons sont **traditionnelles** (domaine public). Les illustrations
+Toutes les chansons sont **traditionnelles** ou anciennes (domaine public). Les illustrations
 sont dessinées par programme (voir plus bas).
 
 ## Les chansons
@@ -33,6 +33,16 @@ sont dessinées par programme (voir plus bas).
 | Ainsi font, font, font | jeu de doigts |
 | Meunier, tu dors | chanson à gestes |
 | Dodo, l'enfant do | berceuse |
+| À la claire fontaine | berceuse |
+| Une poule sur un mur | comptine |
+| Savez-vous planter les choux ? | chanson à gestes |
+| Il pleut, il pleut, bergère | chanson douce |
+| Pomme de reinette et pomme d'api | comptine à jouer |
+| Dans la forêt lointaine | chanson en canon |
+| Bateau sur l'eau | jeu de balancement |
+| Mon âne, mon âne | chanson à accumulation |
+| Il court, il court, le furet | chanson à jouer |
+| Ah ! vous dirai-je, maman | comptine |
 
 ## Voir le site
 
@@ -179,7 +189,8 @@ dépendance, dans `outils/illustrer/` (repris de *livres*) :
   `sciences.py` : décors, personnages animaux et humains, accessoires ;
 - `chansons.py` : ce qui est propre aux chansons — crocodile, alouette, petit
   navire, pont d'Avignon, clocher et cloche, moulin à vent, marionnette,
-  berceau, plume et chandelle, notes de musique… ;
+  berceau, plume et chandelle, notes de musique, fontaine, chaumière, moutons,
+  mur de pierres, furet, barque… ;
 - `histoires/<id>.py` : les images d'une chanson, une fonction par image
   (`histoires/recueil.py` pour la couverture du recueil).
 

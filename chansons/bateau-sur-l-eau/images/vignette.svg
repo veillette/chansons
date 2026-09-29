@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" width="400" height="270">
+
+<rect x="0" y="0" width="400" height="270" fill="#e7f5ff"/>
+<rect x="0" y="190" width="400" height="80" fill="#4dabf7"/>
+<g transform="translate(200 210) scale(0.6 0.6)"><line x1="0" y1="-40" x2="0" y2="-300" stroke="#8d5524" stroke-width="8" stroke-linecap="round"/><polygon points="8,-290 8,-60 150,-60" fill="#fff9db"/><path d="M -170 -60 L 170 -60 Q 150 10 90 20 L -90 20 Q -150 10 -170 -60 Z" fill="#fa5252"/><rect x="-172" y="-70" width="344" height="16" rx="8" fill="#fff3bf"/></g>
+</svg>
