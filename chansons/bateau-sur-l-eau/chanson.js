@@ -11,10 +11,18 @@ Chansonnier.ajouter({
     "On se balance à deux, face à face en se tenant les mains, comme un petit bateau sur la rivière… " +
     "jusqu'à ce qu'il chavire, et plouf ! Une comptine à jouer sur les genoux avec les tout-petits.",
   melodie: {
-    tempo: 104,
+    tempo: 88,
+    mesure: "2/4",
     notes:
-      "sol4:2 mi4:2 | sol4 la4 sol4 mi4 sol4 la4 sol4 mi4 | sol4:2 mi4:2 | sol4 la4 sol4 fa4 mi4 ré4 do4:2 | " +
-      "mi4 mi4 fa4 fa4 sol4:2 sol4:2 | la4 la4 sol4 fa4 mi4:2 ré4:2 | do4:2 - do5:2",
+      "sol4 mi4 | sol4 mi4 | sol4:0.5 la4:0.5 sol4:0.5 mi4:0.5 | sol4:0.5 la4:0.5 sol4:0.5 mi4:0.5 | " +
+      "sol4 mi4 | sol4 mi4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:0.5 ré4:0.5 do4 | " +
+      "mi4:0.5 mi4:0.5 fa4:0.5 fa4:0.5 | sol4:0.5 sol4:0.5 sol4 | la4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:0.5 mi4:0.5 ré4 | " +
+      "do4:0.5 do4 -:0.5 | do5:2",
+    syllabes: [
+      "Ba-teau sur l'eau, La ri-viè-re, la ri-viè-re, " +
+      "Ba-teau sur l'eau, La ri-viè-re~au bord de l'eau. " +
+      "Le ba-teau a cha-vi-ré, Et les en-fants sont tom-bés… Dans l'eau ! Plouf !",
+    ],
   },
   paroles:
     "Bateau sur l'eau,\nLa rivière, la rivière,\nBateau sur l'eau,\nLa rivière au bord de l'eau.\n\n" +

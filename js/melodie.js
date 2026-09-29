@@ -18,7 +18,9 @@
   const NOTE = /^(do|r[eé]|mi|fa|sol|la|si)(#|b)?(\d)?(?::(\d+(?:\.\d+)?))?$/;
   const SILENCE = /^-(?::(\d+(?:\.\d+)?))?$/;
 
-  /* Transforme le texte en une liste de { frequence (null = silence), duree en temps }. */
+  /* Transforme le texte en une liste de { frequence (null = silence), duree en temps }.
+     Chaque note garde aussi son nom (do…si), son altération (-1, 0, 1) et son
+     octave, pour la partition (js/partition.js). */
   function analyser(texte) {
     const notes = [];
     String(texte || "")
@@ -37,7 +39,7 @@
         const octave = m[3] ? Number(m[3]) : 4;
         // la4 = 440 Hz, soit 9 demi-tons au-dessus de do4.
         const midi = 12 * (octave + 1) + DEMI_TONS[nom] + alteration;
-        notes.push({ frequence: 440 * Math.pow(2, (midi - 69) / 12), duree: Number(m[4] || 1) });
+        notes.push({ frequence: 440 * Math.pow(2, (midi - 69) / 12), duree: Number(m[4] || 1), nom, alteration, octave });
       });
     return notes;
   }

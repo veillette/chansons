@@ -12,9 +12,14 @@ Chansonnier.ajouter({
     "les musiciens jouent et les soldats défilent. Une ronde pour danser en se tenant la main.",
   melodie: {
     tempo: 112,
+    mesure: "2/4",
     notes:
-      "do4:0.5 do4:0.5 do4 ré4:0.5 ré4:0.5 ré4 | mi4:0.5 fa4:0.5 sol4:0.5 do4:0.5 si3:0.5 do4:0.5 ré4:0.5 sol3:0.5 | " +
-      "do4:0.5 do4:0.5 do4 ré4:0.5 ré4:0.5 ré4 | mi4:0.5 fa4:0.5 sol4:0.5 do4:0.5 ré4:0.5 si3:0.5 do4",
+      "do4:0.5 do4:0.5 do4 | ré4:0.5 ré4:0.5 ré4 | mi4:0.5 fa4:0.5 sol4:0.5 do4:0.5 | si3:0.5 do4:0.5 ré4:0.5 sol3:0.5 | " +
+      "do4:0.5 do4:0.5 do4 | ré4:0.5 ré4:0.5 ré4 | mi4:0.5 fa4:0.5 sol4:0.5 do4:0.5 | ré4:0.5 si3:0.5 do4",
+    syllabes: [
+      "Sur le pont d'A-vi-gnon, On y dan-se, on y dan-se, " +
+      "Sur le pont d'A-vi-gnon, On y dan-se tous en rond.",
+    ],
   },
   paroles:
     "Refrain :\nSur le pont d'Avignon,\nOn y danse, on y danse,\nSur le pont d'Avignon,\nOn y danse tous en rond.\n\n" +

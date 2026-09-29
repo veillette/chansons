@@ -12,11 +12,18 @@ Chansonnier.ajouter({
     "Une chanson à répondre, très aimée au Québec et en France : un meneur chante, les autres répètent.",
   melodie: {
     tempo: 112,
+    mesure: "4/4",
     notes:
       "do4 ré4:0.5 mi4:0.5 mi4 mi4 | ré4:0.5 do4:0.5 ré4:0.5 mi4:0.5 do4 sol3 | " +
       "do4 ré4:0.5 mi4:0.5 mi4 mi4 | ré4:0.5 do4:0.5 ré4:0.5 mi4:0.5 do4:2 | " +
-      "do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4 ré4:0.5 mi4:0.5 | do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4 ré4:0.5 mi4:0.5 | " +
-      "mi4 mi4 | ré4 ré4 | mi4:2 ré4 do4:0.5 sol3:0.5 | do4:3",
+      "do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 ré4:0.5 mi4:0.5 | do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 ré4:0.5 mi4:0.5 | " +
+      "mi4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 | sol4:0.5 sol4:0.5 sol4:0.5 sol4:0.5 fa4:0.5 fa4:0.5 fa4:0.5 fa4:0.5 | " +
+      "mi4:2 ré4 si3 | do4:4",
+    syllabes: [
+      "A-lou-et-te, gen-til-le a-lou-et-te, A-lou-et-te, je te plu-me _ rai. " +
+      "Je te plu-me-rai la tê-te, Je te plu-me-rai la tê-te, " +
+      "Et la tê-te, et la tê-te, A-lou-et-te, a-lou-et-te, Ah ! _ _ _",
+    ],
   },
   paroles:
     "Refrain :\nAlouette, gentille alouette,\nAlouette, je te plumerai.\n\n" +

@@ -571,6 +571,11 @@ a {
   box-shadow: var(--ombre);
 }
 
+/* Recueil et partitions l'un sous l'autre. */
+.recueil:has(+ .recueil) {
+  margin-bottom: 16px;
+}
+
 .recueil p {
   margin: 0;
   flex: 1 1 280px;

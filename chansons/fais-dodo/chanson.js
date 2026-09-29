@@ -11,11 +11,20 @@ Chansonnier.ajouter({
     "Pendant que Maman fait du gâteau et que Papa fait du chocolat, la grande sœur berce " +
     "le petit Colas. Une berceuse très douce, à chanter tout bas au moment du coucher.",
   melodie: {
-    tempo: 84,
+    tempo: 72,
+    mesure: "2/4",
     notes:
-      "mi4 do4 mi4 | do4 mi4 fa4 sol4 fa4 mi4 | ré4 si3 ré4 | si3 ré4 mi4 fa4 mi4 ré4 | " +
-      "mi4 mi4 mi4 fa4 sol4:2 | mi4 mi4 mi4 fa4 sol4:2 | ré4 ré4 ré4 mi4 fa4:2 | ré4 ré4 ré4 mi4 fa4 mi4 ré4:2 | " +
-      "mi4 do4 mi4 | do4 mi4 fa4 sol4 fa4 mi4 | ré4 si3 ré4 | si3 ré4 mi4 ré4 do4:3",
+      "mi4:0.5 do4:0.5 mi4 | do4:0.5 mi4:0.5 fa4:0.5 sol4:0.5 | fa4 mi4 | " +
+      "ré4:0.5 si3:0.5 ré4 | si3:0.5 ré4:0.5 mi4:0.5 fa4:0.5 | ré4:2 | " +
+      "mi4:0.5 mi4:0.5 mi4:0.5 fa4:0.5 | sol4:2 | mi4:0.5 mi4:0.5 mi4:0.5 fa4:0.5 | sol4:2 | " +
+      "ré4:0.5 ré4:0.5 ré4:0.5 mi4:0.5 | fa4:2 | ré4:0.5 ré4:0.5 ré4:0.5 mi4:0.5 | fa4 mi4 | " +
+      "mi4:0.5 do4:0.5 mi4 | do4:0.5 mi4:0.5 fa4:0.5 sol4:0.5 | fa4 mi4 | " +
+      "ré4:0.5 si3:0.5 ré4 | si3:0.5 ré4:0.5 mi4:0.5 ré4:0.5 | do4:2",
+    syllabes: [
+      "Fais do-do, Co-las mon p'tit frè-re, Fais do-do, t'au-ras du lo-lo. " +
+      "Ma-man est en haut Qui fait du gâ-teau, Pa-pa est en bas Qui fait du cho-co-lat. " +
+      "Fais do-do, Co-las mon p'tit frè-re, Fais do-do, t'au-ras du lo-lo.",
+    ],
   },
   paroles:
     "Fais dodo, Colas mon p'tit frère,\nFais dodo, t'auras du lolo.\n" +

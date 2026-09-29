@@ -12,11 +12,26 @@ Chansonnier.ajouter({
     "Mais Pierrot est déjà au lit ! La plus célèbre des chansons du soir, à fredonner doucement.",
   melodie: {
     tempo: 104,
+    mesure: "4/4",
     notes:
       "do4 do4 do4 ré4 | mi4:2 ré4:2 | do4 mi4 ré4 ré4 | do4:4 | " +
       "do4 do4 do4 ré4 | mi4:2 ré4:2 | do4 mi4 ré4 ré4 | do4:4 | " +
       "ré4 ré4 ré4 ré4 | la3:2 la3:2 | ré4 do4 si3 la3 | sol3:4 | " +
       "do4 do4 do4 ré4 | mi4:2 ré4:2 | do4 mi4 ré4 ré4 | do4:4",
+    syllabes: [
+      "Au clair de la lu-ne, Mon a-mi Pier-rot, " +
+      "Prê-te-moi ta plu-me Pour é-cri-re~un mot. " +
+      "Ma chan-del-le~est mor-te, Je n'ai plus de feu ; " +
+      "Ou-vre-moi ta por-te Pour l'a-mour de Dieu.",
+      "Au clair de la lu-ne, Pier-rot ré-pon-dit : " +
+      "« Je n'ai pas de plu-me, Je suis dans mon lit. " +
+      "Va chez la voi-si-ne, Je crois qu'el-le~y est, " +
+      "Car dans sa cui-si-ne On bat le bri-quet. »",
+      "Au clair de la lu-ne, L'ai-ma-ble Lu-bin " +
+      "Frap-pe chez la bru-ne ; El-le~ré-pond sou-dain : " +
+      "« Qui frap-pe~de la sor-te ? » Il dit à son tour : " +
+      "« Ou-vrez vo-tre por-te Pour le dieu d'A-mour. »",
+    ],
   },
   paroles:
     "Au clair de la lune,\nMon ami Pierrot,\nPrête-moi ta plume\nPour écrire un mot.\nMa chandelle est morte,\nJe n'ai plus de feu ;\nOuvre-moi ta porte\nPour l'amour de Dieu.\n\n" +

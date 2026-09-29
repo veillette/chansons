@@ -10,6 +10,7 @@
  *
  * Le recueil (toutes les chansons dans un seul livret) est un « livre
  * virtuel » construit à partir du catalogue : voir `chargerRecueil()`.
+ * Le livret de partitions aussi : voir `chargerPartitions()`.
  */
 (function () {
   "use strict";
@@ -104,6 +105,34 @@
     return pages;
   }
 
+  /* Portées de la partition d'une chanson réparties sur des pages : moins de
+     portées par page quand plusieurs couplets s'empilent sous les notes, et
+     des pages équilibrées (pas une portée seule sur la dernière). */
+  function pagesPartition(melodie) {
+    const nb = window.Partition.lignes(melodie);
+    const couplets = Math.max(1, window.Partition.couplets(melodie).length);
+    const max = Math.max(2, Math.floor(22 / (2.5 + couplets))); // 6 portées, 4 avec 2 ou 3 couplets
+    const pages = Math.ceil(nb / max);
+    const parPage = Math.ceil(nb / pages);
+    const tranches = [];
+    for (let debut = 0; debut < nb; debut += parPage) tranches.push([debut, Math.min(nb, debut + parPage)]);
+    return tranches;
+  }
+
+  /* Un livret qui regroupe toutes les chansons : couverture, sommaire, pages de
+     chaque chanson (construites par `pagesDe`), quatrième de couverture. */
+  function livretCatalogue(liste, pagesDe) {
+    const pagesChansons = [];
+    const entrees = [];
+    liste.forEach((c) => {
+      const pages = pagesDe(c);
+      if (!pages.length) return;
+      entrees.push({ titre: c.titre, page: 2 + pagesChansons.length }); // 0 = couverture, 1 = sommaire
+      pagesChansons.push(...pages);
+    });
+    return { entrees, pagesChansons };
+  }
+
   const Chansonnier = {
     ajouter(chanson) {
       if (!chanson || !chanson.id || !chanson.titre || !Array.isArray(chanson.pages) || chanson.pages.length === 0) {
@@ -143,25 +172,20 @@
      */
     async chargerRecueil() {
       const liste = await this.chargerTout();
-      const pagesParoles = [];
-      const entrees = [];
-      liste.forEach((c) => {
-        entrees.push({ titre: c.titre, page: 2 + pagesParoles.length }); // 0 = couverture, 1 = sommaire
+      const { entrees, pagesChansons } = livretCatalogue(liste, (c) => {
         const paroles = parolesCompletes(c);
         const nb = colonnes(paroles);
-        decouper(paroles, nb).forEach((texte, i) =>
-          pagesParoles.push({
-            type: "paroles",
-            chanson: c.id,
-            titre: i ? `${c.titre} (suite)` : c.titre,
-            texte,
-            colonnes: nb,
-            image: i ? null : c.vignette,
-            description: c.titre,
-            couleur: c.couleur,
-            melodie: c.melodie,
-          })
-        );
+        return decouper(paroles, nb).map((texte, i) => ({
+          type: "paroles",
+          chanson: c.id,
+          titre: i ? `${c.titre} (suite)` : c.titre,
+          texte,
+          colonnes: nb,
+          image: i ? null : c.vignette,
+          description: c.titre,
+          couleur: c.couleur,
+          melodie: c.melodie,
+        }));
       });
       return {
         id: "recueil",
@@ -177,20 +201,65 @@
         pages: [
           { type: "couverture", image: "images/couverture.svg", description: "Des enfants et des animaux chantent sous la lune." },
           { type: "sommaire", entrees },
-          ...pagesParoles,
+          ...pagesChansons,
           { type: "quatrieme", image: "images/vignette.svg" },
         ],
       };
     },
 
-    /* La chanson ou le recueil demandé dans l'adresse (?chanson=<id> ou ?recueil). */
+    /*
+     * Le livret de partitions : couverture, sommaire, la partition de chaque
+     * chanson (notes et paroles, sur une ou plusieurs pages), quatrième de
+     * couverture. Ses propres images sont dans `chansons/partitions/images/`.
+     */
+    async chargerPartitions() {
+      const liste = await this.chargerTout();
+      const { entrees, pagesChansons } = livretCatalogue(liste, (c) =>
+        !c.melodie
+          ? []
+          : pagesPartition(c.melodie).map(([debut, fin], i) => ({
+              type: "partition",
+              chanson: c.id,
+              titre: i ? `${c.titre} (suite)` : c.titre,
+              image: i ? null : c.vignette,
+              description: c.titre,
+              couleur: c.couleur,
+              melodie: c.melodie,
+              debut,
+              fin,
+            }))
+      );
+      return {
+        id: "partitions",
+        partitions: true,
+        titre: "Mes partitions",
+        sousTitre: "Les notes et les paroles",
+        auteur: "Chansons traditionnelles",
+        age: "Pour chanter et jouer",
+        couleur: "#5f3dc4",
+        resume:
+          `Les airs des ${liste.length} chansons, avec les paroles sous les notes : ` +
+          "pour chanter juste, ou pour les jouer au piano, à la flûte ou au xylophone.",
+        pages: [
+          { type: "couverture", image: "images/couverture.svg", description: "Une enfant et un oiseau chantent devant une portée de musique." },
+          { type: "sommaire", entrees },
+          ...pagesChansons,
+          { type: "quatrieme", image: "images/vignette.svg" },
+        ],
+      };
+    },
+
+    /* La chanson ou le livret demandé dans l'adresse (?chanson=<id>, ?recueil ou ?partitions). */
     depuisAdresse(params = new URLSearchParams(location.search)) {
       if (params.has("recueil")) return this.chargerRecueil();
+      if (params.has("partitions")) return this.chargerPartitions();
       return this.charger(params.get("chanson") || (window.CATALOGUE || [])[0]);
     },
 
     parametre(chanson) {
-      return chanson.recueil ? "recueil" : `chanson=${encodeURIComponent(chanson.id)}`;
+      if (chanson.recueil) return "recueil";
+      if (chanson.partitions) return "partitions";
+      return `chanson=${encodeURIComponent(chanson.id)}`;
     },
 
     /* Chemin relatif au dossier de la chanson. Pas de chemin absolu (« /… ») :
@@ -271,6 +340,7 @@
           const contenu = el.appendChild(element("div", "page__contenu"));
           contenu.appendChild(element("h1", "page__titre", page.titre || "Sommaire"));
           const liste = contenu.appendChild(element("ol", "page__sommaire"));
+          if ((page.entrees || []).length > 14) el.classList.add("page--sommaire-long");
           (page.entrees || []).forEach((e) => {
             const li = liste.appendChild(element("li"));
             li.appendChild(element("span", "page__sommaire-titre", e.titre));
@@ -288,6 +358,21 @@
           const texte = blocTexte(page.texte, "page__texte page__paroles");
           if (page.colonnes === 2) el.classList.add("page--paroles-2col");
           el.appendChild(texte);
+          break;
+        }
+
+        case "partition": {
+          // La partition d'une chanson (ou une partie) : titre, vignette, portées.
+          const entete = el.appendChild(element("div", "page__paroles-entete"));
+          if (page.image) entete.appendChild(image(page.image, "page__paroles-vignette"));
+          const titres = entete.appendChild(element("div", "page__partition-titres"));
+          titres.appendChild(element("h2", "page__titre", page.titre));
+          if (!page.image) entete.classList.add("page__paroles-entete--suite");
+          else titres.appendChild(element("p", "page__partition-credit", "Air traditionnel"));
+          const portees = el.appendChild(element("div", "page__partition"));
+          portees.setAttribute("role", "img");
+          portees.setAttribute("aria-label", `Partition de ${page.titre}`);
+          if (window.Partition) window.Partition.dessiner(portees, page.melodie, { debut: page.debut, fin: page.fin });
           break;
         }
 
@@ -324,6 +409,8 @@
           return (page.entrees || []).map((e) => e.titre).join(". ");
         case "paroles":
           return `${page.titre}. ${page.texte || ""}`;
+        case "partition":
+          return page.titre;
         default:
           return page.texte || "";
       }

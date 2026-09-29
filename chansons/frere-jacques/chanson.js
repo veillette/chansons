@@ -12,10 +12,15 @@ Chansonnier.ajouter({
     "Une chanson toute simple à chanter en canon, à deux, à trois ou à quatre voix.",
   melodie: {
     tempo: 120,
+    mesure: "4/4",
     notes:
       "do4 ré4 mi4 do4 | do4 ré4 mi4 do4 | mi4 fa4 sol4:2 | mi4 fa4 sol4:2 | " +
       "sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4 do4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4 do4 | " +
       "do4 sol3 do4:2 | do4 sol3 do4:2",
+    syllabes: [
+      "Frè-re Jac-ques, frè-re Jac-ques, Dor-mez-vous ? Dor-mez-vous ? " +
+      "Son-nez les ma-ti-nes ! Son-nez les ma-ti-nes ! Ding, daing, dong ! Ding, daing, dong !",
+    ],
   },
   paroles:
     "Frère Jacques, frère Jacques,\nDormez-vous ? Dormez-vous ?\nSonnez les matines !\nSonnez les matines !\nDing, daing, dong !\nDing, daing, dong !",

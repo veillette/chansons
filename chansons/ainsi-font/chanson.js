@@ -11,10 +11,15 @@ Chansonnier.ajouter({
     "Sur la scène du petit théâtre, les marionnettes dansent, font trois petits tours, puis s'en vont. " +
     "Une comptine à mimer avec les mains : on les fait tourner comme des marionnettes, puis on les cache dans son dos.",
   melodie: {
-    tempo: 108,
+    tempo: 96,
+    mesure: "2/4",
     notes:
-      "do4:0.5 mi4:0.5 sol4 sol4 sol4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4:0.5 ré4:0.5 ré4 do4 | " +
-      "do4:0.5 mi4:0.5 sol4 sol4 sol4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4 ré4 do4:2",
+      "do4:0.5 mi4:0.5 sol4 | sol4 sol4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:0.5 mi4:0.5 ré4 | do4:2 | " +
+      "do4:0.5 mi4:0.5 sol4 | sol4 sol4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4 ré4 | do4:2",
+    syllabes: [
+      "Ain-si font, font, font Les pe-tites ma-ri-o-net-tes, " +
+      "Ain-si font, font, font, Trois p'tits tours et puis s'en vont.",
+    ],
   },
   paroles:
     "Ainsi font, font, font\nLes petites marionnettes,\nAinsi font, font, font,\nTrois p'tits tours et puis s'en vont.\n\n" +

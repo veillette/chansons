@@ -36,6 +36,7 @@ NOTE = re.compile(r"(do|r[eé]|mi|fa|sol|la|si)(#|b)?(\d)?(:\d+(\.\d+)?)?")
 SILENCE = re.compile(r"-(:\d+(\.\d+)?)?")
 DISPOSITIONS = {"image-haut", "image-bas", "pleine-page"}
 POSITIONS_TEXTE = {"haut", "bas"}
+PONCTUATION = re.compile(r"[!?;:,.»…]+")
 
 
 def erreurs_structure(chanson):
@@ -79,6 +80,51 @@ def erreurs_structure(chanson):
             tempo = melodie.get("tempo", 100)
             if not isinstance(tempo, (int, float)) or not 20 <= tempo <= 300:
                 erreurs.append(f"melodie : tempo invalide ({tempo!r}).")
+            if not erreurs:
+                erreurs.extend(erreurs_partition(melodie))
+    return erreurs
+
+
+def syllabes(couplet):
+    """Syllabes d'un couplet, comptées comme dans js/partition.js."""
+    unites = []
+    for mot in couplet.split():
+        if PONCTUATION.fullmatch(mot) and unites:
+            continue  # rattachée à la syllabe précédente
+        if mot == "«":
+            continue  # rattaché à la syllabe suivante
+        unites.extend([mot] if mot in ("_", "*") else [p for p in mot.split("-") if p])
+    return unites
+
+
+def erreurs_partition(melodie):
+    """Mesure, anacrouse et syllabes : la partition (js/partition.js) doit tomber juste."""
+    erreurs = []
+    mesure = re.fullmatch(r"(\d+)/(\d+)", str(melodie.get("mesure", "4/4")))
+    if not mesure or mesure[2] not in ("2", "4", "8"):
+        return [f"melodie : mesure invalide ({melodie.get('mesure')!r}) ; par exemple \"3/4\" ou \"6/8\"."]
+    barre = int(mesure[1]) * 4 / int(mesure[2])  # en temps (noires)
+    anacrouse = melodie.get("anacrouse", 0)
+    if not isinstance(anacrouse, (int, float)) or not 0 <= anacrouse < barre:
+        return [f"melodie : anacrouse invalide ({anacrouse!r})."]
+    # Les « | » écrits dans les notes doivent tomber sur les barres calculées.
+    position, notes = 0.0, 0
+    for jeton in melodie["notes"].split():
+        if jeton == "|":
+            reste = (position - anacrouse) % barre if position >= anacrouse else anacrouse - position
+            if position and min(reste, barre - reste) > 1e-6:
+                erreurs.append(f"melodie : barre « | » au milieu d'une mesure (après {position:g} temps).")
+            continue
+        duree = jeton.split(":")[1] if ":" in jeton else "1"
+        position += float(duree)
+        notes += not jeton.startswith("-")
+    for numero, couplet in enumerate(melodie.get("syllabes") or []):
+        if not isinstance(couplet, str):
+            erreurs.append(f"melodie : couplet {numero + 1} des syllabes invalide.")
+        elif len(syllabes(couplet)) > notes:
+            erreurs.append(f"melodie : couplet {numero + 1} : {len(syllabes(couplet))} syllabes pour {notes} notes.")
+        elif numero == 0 and len(syllabes(couplet)) != notes:
+            erreurs.append(f"melodie : couplet 1 : {len(syllabes(couplet))} syllabes pour {notes} notes.")
     return erreurs
 
 
@@ -117,13 +163,15 @@ def verifier():
             else:
                 images.add(image)
 
-    # Images propres au recueil (js/chansons.js, chargerRecueil).
-    for nom in ("couverture.svg", "vignette.svg"):
-        image = RACINE / "chansons" / "recueil" / "images" / nom
-        if image.is_file():
-            images.add(image)
-        else:
-            erreurs.append(f"recueil : image manquante ({nom}).")
+    # Images propres au recueil et au livret de partitions (js/chansons.js,
+    # chargerRecueil et chargerPartitions).
+    for livret in ("recueil", "partitions"):
+        for nom in ("couverture.svg", "vignette.svg"):
+            image = RACINE / "chansons" / livret / "images" / nom
+            if image.is_file():
+                images.add(image)
+            else:
+                erreurs.append(f"{livret} : image manquante ({nom}).")
 
     # Vérifier aussi les fichiers présents qui ne sont pas référencés.
     svgs = sorted((RACINE / "chansons").glob("*/images/*.svg"))

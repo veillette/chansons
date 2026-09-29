@@ -18,7 +18,7 @@
  *  - sur localhost : toujours le réseau d'abord, pour voir tout de suite les
  *    images régénérées pendant qu'on dessine.
  */
-const VERSION = "v2";
+const VERSION = "v3";
 const CACHE = `chansons-${VERSION}`;
 
 const INTERFACE = [
@@ -31,6 +31,8 @@ const INTERFACE = [
   "css/pages.css",
   "js/chansons.js",
   "js/melodie.js",
+  "js/partition.js",
+  "lib/abcjs/abcjs-basic-min.js",
   "js/bibliotheque.js",
   "js/lecteur.js",
   "js/imposition.js",
@@ -72,8 +74,10 @@ async function fichiersDesChansons() {
       }
     })
   );
-  // Images propres au recueil.
-  fichiers.push("chansons/recueil/images/couverture.svg", "chansons/recueil/images/vignette.svg");
+  // Images propres au recueil et au livret de partitions.
+  for (const livret of ["recueil", "partitions"]) {
+    fichiers.push(`chansons/${livret}/images/couverture.svg`, `chansons/${livret}/images/vignette.svg`);
+  }
   return [...new Set(fichiers)];
 }
 

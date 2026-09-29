@@ -11,11 +11,17 @@ Chansonnier.ajouter({
     "Les enfants font la ronde en tenant une ficelle où glisse un anneau : c'est le furet ! " +
     "Il passe de main en main pendant la chanson… et celui qui est au milieu doit deviner où il se cache.",
   melodie: {
-    tempo: 126,
+    tempo: 100,
+    mesure: "2/4",
     notes:
-      "sol4 mi4 sol4 mi4 sol4 la4 sol4:2 | fa4 ré4 fa4 ré4 fa4 sol4 fa4:2 | " +
-      "sol4 mi4 sol4 mi4 sol4 la4 sol4:2 | fa4 ré4 si3 ré4 do4:2 - | " +
-      "mi4 mi4 fa4 fa4 sol4:2 sol4:2 | fa4 fa4 mi4 ré4 do4:2 -",
+      "sol4:0.5 mi4:0.5 sol4:0.5 mi4:0.5 | sol4:0.5 la4:0.5 sol4 | fa4:0.5 ré4:0.5 fa4:0.5 ré4:0.5 | fa4:0.5 sol4:0.5 fa4:0.5 mi4:0.5 | " +
+      "sol4:0.5 mi4:0.5 sol4:0.5 mi4:0.5 | sol4:0.5 la4:0.5 sol4 | fa4:0.5 ré4:0.5 fa4:0.5 ré4:0.5 | si3:0.5 ré4:0.5 do4 | " +
+      "mi4:0.5 mi4:0.5 fa4:0.5 fa4:0.5 | sol4:0.5 sol4:0.5 sol4 | la4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:0.5 ré4:0.5 do4",
+    syllabes: [
+      "Il court, il court, le fu-ret, Le fu-ret du bois, mes-da-mes, " +
+      "Il court, il court, le fu-ret, Le fu-ret du bois jo-li. " +
+      "Il est pas-sé par i-ci, Il re-pas-se-ra par là.",
+    ],
   },
   paroles:
     "Il court, il court, le furet,\nLe furet du bois, mesdames,\nIl court, il court, le furet,\nLe furet du bois joli.\n\n" +

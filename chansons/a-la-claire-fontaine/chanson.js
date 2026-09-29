@@ -12,10 +12,19 @@ Chansonnier.ajouter({
     "où chante un rossignol. Une très vieille chanson, douce comme une berceuse, qu'on chante en France comme au Québec.",
   melodie: {
     tempo: 96,
+    mesure: "4/4",
     notes:
       "do4 do4:0.5 mi4:0.5 mi4 ré4:0.5 mi4:0.5 | ré4:0.5 do4:1.5 do4 do4:0.5 mi4:0.5 | mi4 ré4:0.5 mi4:0.5 mi4:2 | " +
       "mi4 mi4:0.5 ré4:0.5 do4 mi4:0.5 sol4:0.5 | mi4:2 sol4 sol4:0.5 mi4:0.5 | do4 mi4:0.5 ré4:0.5 ré4:2 | " +
-      "sol4 sol4:0.5 mi4:0.5 sol4 sol4:0.5 mi4:0.5 | do4:2 do4 mi4:0.5 ré4:0.5 | do4 mi4 ré4:0.5 ré4:0.5 do4:2",
+      "sol4 sol4:0.5 mi4:0.5 sol4 sol4:0.5 mi4:0.5 | do4:2 do4 mi4:0.5 ré4:0.5 | do4 mi4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 do4",
+    syllabes: [
+      "À la clai-re fon-tai-ne _ M'en al-lant pro-me _ ner, " +
+      "J'ai trou-vé l'eau si bel-le Que je m'y suis bai _ gnée. " +
+      "Il y a long-temps que je t'ai-me, Ja-mais je ne t'ou-blie-rai.",
+      "Sous les feuil-les d'un chê-ne _ Je me suis fait sé _ cher. " +
+      "Sur la plus hau-te bran-che Un ros-si-gnol chan _ tait. " +
+      "Il y a long-temps que je t'ai-me, Ja-mais je ne t'ou-blie-rai.",
+    ],
   },
   paroles:
     "À la claire fontaine,\nM'en allant promener,\nJ'ai trouvé l'eau si belle\nQue je m'y suis baignée.\n\n" +

@@ -11,10 +11,15 @@ Chansonnier.ajouter({
     "Perchée sur son mur, une poule picore du pain dur… picoti, picota ! " +
     "Une toute petite comptine pour compter qui commence au jeu, ou simplement pour rire.",
   melodie: {
-    tempo: 120,
+    tempo: 100,
+    mesure: "2/4",
     notes:
-      "sol4 sol4 mi4 mi4 | sol4 sol4 mi4:2 | sol4 sol4 mi4 mi4 | sol4 sol4 mi4:2 | " +
-      "sol4 la4 sol4 fa4 | mi4 ré4 mi4:2 | fa4 fa4 ré4:2 | mi4 ré4 do4:2",
+      "sol4:0.5 sol4:0.5 mi4:0.5 mi4:0.5 | sol4:0.5 sol4:0.5 mi4 | sol4:0.5 sol4:0.5 mi4:0.5 mi4:0.5 | sol4:0.5 sol4:0.5 mi4 | " +
+      "sol4:0.5 la4:0.5 sol4 | fa4:0.5 ré4:0.5 mi4 | fa4:0.5 fa4:0.5 fa4 | ré4:2 | mi4:0.5 mi4:0.5 ré4 | do4:2",
+    syllabes: [
+      "U-ne pou-le sur un mur Qui pi-co-re du pain dur, " +
+      "Pi-co-ti, pi-co-ta, Lè-ve la queue Et puis s'en va !",
+    ],
   },
   paroles: "Une poule sur un mur\nQui picore du pain dur,\nPicoti, picota,\nLève la queue\nEt puis s'en va !",
 

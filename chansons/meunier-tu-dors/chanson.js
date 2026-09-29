@@ -11,11 +11,18 @@ Chansonnier.ajouter({
     "Le meunier fait la sieste sur ses sacs de farine… et pendant ce temps, le vent se lève ! " +
     "Une chanson à gestes : on fait tourner les bras comme les ailes du moulin, de plus en plus vite.",
   melodie: {
-    tempo: 110,
+    tempo: 96,
+    mesure: "2/4",
     notes:
-      "do4 do4 ré4 mi4:2 | mi4 fa4 sol4 mi4 fa4 sol4 | la4 sol4 fa4:2 | " +
-      "do4 do4 ré4 mi4:2 | mi4 fa4 sol4 mi4 fa4 sol4 | fa4 ré4 do4:2 | " +
-      "sol4 la4 sol4 fa4 mi4 fa4 | sol4 la4 sol4:2 | sol4 la4 sol4 fa4 mi4 ré4 | mi4 ré4 do4:2",
+      "do4:0.5 do4:0.5 ré4 | mi4:2 | mi4:0.5 fa4:0.5 sol4 | mi4:0.5 fa4:0.5 sol4 | la4 sol4 | fa4 mi4 | " +
+      "do4:0.5 do4:0.5 ré4 | mi4:2 | mi4:0.5 fa4:0.5 sol4 | mi4:0.5 fa4:0.5 sol4 | fa4 ré4 | do4:2 | " +
+      "sol4:0.5 la4:0.5 sol4 | fa4:0.5 mi4:0.5 fa4 | sol4 la4 | sol4 sol4 | " +
+      "sol4:0.5 la4:0.5 sol4 | fa4:0.5 mi4:0.5 ré4 | mi4 ré4 | do4:2",
+    syllabes: [
+      "Meu-nier, tu dors, Ton mou-lin, ton mou-lin va trop vi-te. " +
+      "Meu-nier, tu dors, Ton mou-lin, ton mou-lin va trop fort. " +
+      "Ton mou-lin, ton mou-lin va trop vi-te, Ton mou-lin, ton mou-lin va trop fort.",
+    ],
   },
   paroles:
     "Meunier, tu dors,\nTon moulin, ton moulin va trop vite.\nMeunier, tu dors,\nTon moulin, ton moulin va trop fort.\n" +

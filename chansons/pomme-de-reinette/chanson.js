@@ -11,11 +11,17 @@ Chansonnier.ajouter({
     "Assis en rond sur le tapis, chacun tend ses poings fermés ; à chaque syllabe, on en touche un… " +
     "Celui qui reçoit le dernier « coup de marteau » cache son poing derrière son dos !",
   melodie: {
-    tempo: 116,
+    tempo: 112,
+    mesure: "4/4",
     notes:
-      "sol4 sol4:0.5 mi4:0.5 sol4 sol4:0.5 mi4:0.5 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4:2 | ré4 ré4 mi4 ré4 do4:2 | " +
-      "sol4 sol4:0.5 mi4:0.5 sol4 sol4:0.5 mi4:0.5 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4:2 | ré4 ré4 mi4 ré4 do4:2 | " +
-      "mi4 mi4 fa4 fa4 sol4:2 | la4 la4 sol4 fa4 mi4:2 | ré4 ré4 mi4 ré4 | do4:3",
+      "sol4 sol4:0.5 mi4:0.5 sol4 sol4:0.5 mi4:0.5 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4:2 | ré4 ré4 mi4 ré4 | do4:2 do4 - | " +
+      "sol4 sol4:0.5 mi4:0.5 sol4 sol4:0.5 mi4:0.5 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4:2 | ré4 ré4 mi4 ré4 | do4:2 -:2 | " +
+      "mi4:0.5 mi4:0.5 fa4:0.5 fa4:0.5 sol4 sol4 | la4:2 sol4:2 | fa4:0.5 fa4:0.5 mi4:0.5 mi4:0.5 ré4 ré4 | do4:4",
+    syllabes: [
+      "Pom-me de rei-nette et pom-me d'a _ pi, Ta-pis, ta-pis rou-ge, " +
+      "Pom-me de rei-nette et pom-me d'a _ pi, Ta-pis, ta-pis gris. " +
+      "Ca-che ton poing der-rière ton dos, Ou j'te don-ne~un coup d'mar-teau !",
+    ],
   },
   paroles:
     "Pomme de reinette et pomme d'api,\nTapis, tapis rouge,\nPomme de reinette et pomme d'api,\nTapis, tapis gris.\n" +

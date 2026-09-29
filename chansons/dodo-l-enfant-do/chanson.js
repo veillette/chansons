@@ -11,10 +11,15 @@ Chansonnier.ajouter({
     "Dans la grange, une poule blanche prépare un petit coco pour l'enfant qui s'endort. " +
     "La plus simple et la plus ancienne des berceuses, pour bercer les tout-petits.",
   melodie: {
-    tempo: 76,
+    tempo: 66,
+    mesure: "2/4",
     notes:
-      "sol4 mi4 sol4 mi4:2 | fa4 mi4 ré4 mi4 fa4 sol4 mi4:2 | " +
-      "sol4 mi4 sol4 mi4:2 | fa4 mi4 ré4 sol3 si3 do4:3",
+      "sol4 mi4 | sol4:0.5 sol4:0.5 mi4 | fa4:0.5 mi4:0.5 ré4:0.5 mi4:0.5 | fa4 sol4 | mi4 mi4 | " +
+      "sol4 mi4 | sol4:0.5 sol4:0.5 mi4 | fa4:0.5 mi4:0.5 ré4:0.5 mi4:0.5 | ré4 si3 | do4:2",
+    syllabes: [
+      "Do-do, l'en-fant do, L'en-fant dor-mi-ra bien vi-te. " +
+      "Do-do, l'en-fant do, L'en-fant dor-mi-ra bien-tôt.",
+    ],
   },
   paroles:
     "Dodo, l'enfant do,\nL'enfant dormira bien vite.\nDodo, l'enfant do,\nL'enfant dormira bientôt.\n\n" +

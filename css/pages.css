@@ -346,6 +346,23 @@
   margin-bottom: 1.6cqh;
 }
 
+/* Beaucoup de chansons : un sommaire plus serré pour tenir sur la page. */
+.page--sommaire-long .page__contenu {
+  padding-top: 8cqh;
+}
+
+.page--sommaire-long .page__titre {
+  margin-bottom: 3cqh;
+}
+
+.page--sommaire-long .page__sommaire {
+  font-size: 3.3cqw;
+}
+
+.page--sommaire-long .page__sommaire li {
+  margin-bottom: 0.45cqh;
+}
+
 .page__sommaire-points {
   flex: 1;
   border-bottom: 0.5cqw dotted currentColor;
@@ -402,4 +419,49 @@
 
 .page--paroles-2col .page__paroles p {
   break-inside: avoid;
+}
+
+/* --- Partition d'une chanson (livret de partitions) --------------------- */
+
+.page--partition {
+  display: flex;
+  flex-direction: column;
+}
+
+.page__paroles-entete--suite {
+  padding-top: 5cqh;
+}
+
+.page__partition-titres {
+  flex: 1;
+}
+
+.page--partition .page__titre {
+  font-size: 8cqw;
+  color: var(--couleur);
+}
+
+.page__partition-credit {
+  margin-top: 0.3em;
+  font-size: 3.4cqw;
+  opacity: 0.7;
+}
+
+.page__partition {
+  flex: 1;
+  min-height: 0;
+  padding: 1cqh 5cqw 6cqh;
+  overflow: hidden;
+}
+
+/* Toute la largeur, mais réduite (sans déformation) si elle est trop haute. */
+.page__partition svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.page__partition .abcjs-lyric {
+  font-family: "Andika", system-ui, sans-serif;
 }

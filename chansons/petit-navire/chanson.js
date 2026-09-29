@@ -11,11 +11,23 @@ Chansonnier.ajouter({
     "Un petit navire part pour son premier voyage. Mais au bout de six semaines, il n'y a plus rien à manger ! " +
     "Heureusement, des milliers de petits poissons viennent sauver le jeune mousse.",
   melodie: {
-    tempo: 116,
+    tempo: 96,
+    mesure: "2/4",
+    anacrouse: 0.5,
     notes:
-      "sol3 do4 do4 do4 ré4 mi4 do4:2 | sol3 do4 do4 do4 ré4 mi4 do4:2 | " +
-      "mi4 mi4 fa4 sol4:0.5 sol4:0.5 sol4 la4 sol4 fa4 mi4:2 | ré4 ré4 mi4 fa4:0.5 fa4:0.5 fa4 sol4 fa4 mi4 ré4:2 | " +
-      "sol4:2 mi4:2 | sol4:2 do4:3",
+      "sol3:0.5 | do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 ré4 | do4:1.5 sol3:0.5 | " +
+      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 ré4 | do4:1.5 mi4:0.5 | " +
+      "mi4:0.5 fa4:0.5 sol4:0.5 sol4:0.5 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:1.5 ré4:0.5 | " +
+      "ré4:0.5 mi4:0.5 fa4:0.5 fa4:0.5 | fa4:0.5 sol4:0.5 fa4:0.5 mi4:0.5 | ré4:2 | " +
+      "sol4 mi4 | sol4 do4",
+    syllabes: [
+      "Il é-tait un pe-tit na-vi-re, Il é-tait un pe-tit na-vi-re, " +
+      "Qui n'a-vait ja-ja-ja-mais na-vi-gué, Qui n'a-vait ja-ja-ja-mais na-vi-gué, O-hé ! O-hé !",
+      "Il en-tre-prit un long vo-ya-ge, Il en-tre-prit un long vo-ya-ge, " +
+      "Sur la mer Mé-Mé-Mé-di-ter-ra-née, Sur la mer Mé-Mé-Mé-di-ter-ra-née, O-hé ! O-hé !",
+      "Au bout de cinq à six se-mai-nes, Au bout de cinq à six se-mai-nes, " +
+      "Les vi-vres vin-vin-vin-rent à man-quer, Les vi-vres vin-vin-vin-rent à man-quer, O-hé ! O-hé !",
+    ],
   },
   paroles:
     "Il était un petit navire (bis)\nQui n'avait ja-ja-jamais navigué (bis)\nOhé ! Ohé !\n\n" +

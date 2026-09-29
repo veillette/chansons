@@ -11,11 +11,22 @@ Chansonnier.ajouter({
     "Le pauvre âne a mal partout ! Heureusement, Madame lui offre un bonnet, des boucles d'oreilles, des lunettes bleues… " +
     "À chaque couplet, on ajoute un cadeau et on répète tous les autres.",
   melodie: {
-    tempo: 112,
+    tempo: 96,
+    mesure: "2/4",
+    anacrouse: 0.5,
     notes:
-      "sol4 mi4 sol4 mi4:2 | do4 ré4 mi4 fa4 sol4:2 | la4 sol4 fa4 mi4 ré4:2 | " +
-      "fa4 mi4 ré4 do4 ré4:2 | fa4 mi4 ré4 do4 ré4:2 | " +
-      "mi4 mi4 fa4 sol4 la4 sol4:0.5 sol4:0.5 | mi4 ré4 do4:2",
+      "do4:0.5 | mi4 mi4:0.5 do4:0.5 | mi4 mi4:0.5 sol4:0.5 | " +
+      "sol4:0.5 sol4:0.5 la4:0.5 sol4:0.5 | fa4 mi4:0.5 do4:0.5 | " +
+      "ré4:0.5 ré4:0.5 mi4:0.5 fa4:0.5 | sol4 fa4:0.5 mi4:0.5 | " +
+      "ré4:0.5 mi4:0.5 fa4:0.5 mi4:0.5 | ré4:0.5 do4:0.5 ré4 | " +
+      "ré4:0.5 mi4:0.5 fa4:0.5 mi4:0.5 | ré4:0.5 do4:0.5 ré4 | " +
+      "mi4:0.5 mi4:0.5 fa4:0.5 sol4:0.5 | la4:0.5 la4:0.5 sol4:0.5 sol4:0.5 | " +
+      "mi4:0.5 mi4:0.5 fa4:0.5 ré4:0.5 | ré4 do4",
+    syllabes: [
+      "Mon â-ne, mon â-ne A bien mal à la tê-te. " +
+      "Ma-da-me lui a fait fai-re Un bon-net pour sa fê-te, " +
+      "Un bon-net pour sa fê-te Et des sou-liers li-las, la, la, Et des sou-liers li-las.",
+    ],
   },
   paroles:
     "Mon âne, mon âne\nA bien mal à la tête.\nMadame lui a fait faire\nUn bonnet pour sa fête,\nUn bonnet pour sa fête\n" +

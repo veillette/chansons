@@ -12,10 +12,16 @@ Chansonnier.ajouter({
     "Un air que tout le monde connaît, le même que « Brille, brille, petite étoile ».",
   melodie: {
     tempo: 104,
+    mesure: "4/4",
     notes:
       "do4 do4 sol4 sol4 | la4 la4 sol4:2 | fa4 fa4 mi4 mi4 | ré4 ré4 do4:2 | " +
       "sol4 sol4 fa4 fa4 | mi4 mi4 ré4:2 | sol4 sol4 fa4 fa4 | mi4 mi4 ré4:2 | " +
       "do4 do4 sol4 sol4 | la4 la4 sol4:2 | fa4 fa4 mi4 mi4 | ré4 ré4 do4:2",
+    syllabes: [
+      "Ah ! vous di-rai-je, ma-man, Ce qui cau-se mon tour-ment ? " +
+      "Pa-pa veut que je rai-sonne Com-m'u-ne gran-de per-sonne. " +
+      "Moi, je dis que les bon-bons Va-lent mieux que la rai-son !",
+    ],
   },
 
   pages: [

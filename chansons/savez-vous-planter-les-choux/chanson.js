@@ -11,10 +11,19 @@ Chansonnier.ajouter({
     "Dans le potager, on plante les choux… avec le doigt, avec le pied, avec le genou, avec le coude, et même avec le nez ! " +
     "À chaque couplet, on montre la partie du corps en chantant.",
   melodie: {
-    tempo: 120,
+    tempo: 96,
+    mesure: "2/4",
     notes:
-      "do4 do4 do4 ré4 mi4 mi4 mi4:2 | ré4 ré4 ré4 mi4 fa4:2 mi4:2 | " +
-      "do4 do4 do4 ré4 mi4 mi4 mi4:2 | ré4 ré4 mi4 ré4 do4:4",
+      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 mi4 | ré4:0.5 ré4:0.5 ré4:0.5 mi4:0.5 | fa4:0.5 fa4:0.5 mi4 | " +
+      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 mi4 | ré4:0.5 ré4:0.5 mi4:0.5 ré4:0.5 | do4:0.5 ré4:0.5 do4",
+    syllabes: [
+      "Sa-vez-vous plan-ter les choux, À la mo-de~à la mo-de, " +
+      "Sa-vez-vous plan-ter les choux, À la mo-de de chez nous ?",
+      "On les plan-te~a-vec le doigt, À la mo-de~à la mo-de, " +
+      "On les plan-te~a-vec le doigt, À la mo-de de chez nous.",
+      "On les plan-te~a-vec le pied, À la mo-de~à la mo-de, " +
+      "On les plan-te~a-vec le pied, À la mo-de de chez nous.",
+    ],
   },
   paroles:
     "Savez-vous planter les choux,\nÀ la mode, à la mode,\nSavez-vous planter les choux,\nÀ la mode de chez nous ?\n\n" +

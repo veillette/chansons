@@ -11,10 +11,17 @@ Chansonnier.ajouter({
     "Tout en haut d'un grand chêne, le coucou appelle… et le hibou lui répond ! " +
     "On peut la chanter en canon : un groupe fait le coucou, l'autre le hibou.",
   melodie: {
-    tempo: 108,
+    tempo: 96,
+    mesure: "2/4",
     notes:
-      "do4 mi4 sol4 sol4 sol4:2 | la4 sol4 fa4 mi4:2 - | ré4 fa4 la4 la4 la4:2 | si4 la4 sol4:2 - | " +
-      "sol4:2 mi4:2 sol4:2 mi4:2 | sol4 fa4 mi4 ré4 do4:2 -",
+      "do4:0.5 mi4:0.5 sol4:0.5 sol4:0.5 | sol4:0.5 sol4:0.5 sol4 | la4:0.5 la4:0.5 sol4:0.5 sol4:0.5 | fa4 mi4 | " +
+      "ré4:0.5 fa4:0.5 la4:0.5 la4:0.5 | la4:0.5 la4:0.5 la4 | si4:0.5 si4:0.5 la4:0.5 la4:0.5 | la4 sol4 | " +
+      "sol4 mi4 | sol4 mi4 | sol4 mi4 | sol4 mi4 | sol4 mi4 | sol4 mi4 | ré4 do4",
+    syllabes: [
+      "Dans la fo-rêt loin-tai-ne, On en-tend le cou-cou. " +
+      "Du haut de son grand chê-ne, Il ré-pond au hi-bou : " +
+      "Cou-cou, hi-bou, cou-cou, hi-bou, Cou-cou, hi-bou, cou-cou.",
+    ],
   },
   paroles:
     "Dans la forêt lointaine,\nOn entend le coucou.\nDu haut de son grand chêne,\nIl répond au hibou :\n" +

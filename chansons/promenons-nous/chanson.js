@@ -11,11 +11,19 @@ Chansonnier.ajouter({
     "Pendant que les enfants se promènent dans les bois, le loup s'habille tranquillement dans sa cabane… " +
     "Loup, y es-tu ? Une comptine pour jouer au loup : quand il crie « J'arrive ! », tout le monde s'enfuit en riant.",
   melodie: {
-    tempo: 118,
+    tempo: 100,
+    mesure: "2/4",
     notes:
-      "do4 do4 do4 ré4 mi4:2 mi4:2 | ré4 ré4 ré4 mi4 fa4 mi4 ré4:2 | " +
-      "mi4 mi4 mi4 fa4 sol4:2 | fa4 fa4 fa4 mi4 ré4:2 | mi4 mi4 mi4 fa4 sol4:2 | fa4 mi4 ré4 si3 do4:2 | " +
-      "sol4:2 la4:2 | sol4:2 fa4:2 | mi4:2 ré4:2 | do4:4",
+      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 mi4 | ré4:0.5 ré4:0.5 ré4:0.5 mi4:0.5 | fa4:0.5 mi4:0.5 ré4 | " +
+      "mi4:0.5 mi4:0.5 mi4:0.5 fa4:0.5 | sol4 sol4 | fa4:0.5 fa4:0.5 fa4:0.5 mi4:0.5 | ré4:2 | " +
+      "mi4:0.5 mi4:0.5 mi4:0.5 fa4:0.5 | sol4 sol4 | fa4:0.5 fa4:0.5 mi4:0.5 ré4:0.5 | si3 do4 | " +
+      "sol4 sol4:0.5 la4:0.5 | sol4:2 | fa4:0.5 fa4:0.5 mi4 | ré4:0.5 ré4:0.5 do4",
+    syllabes: [
+      "Pro-me-nons-nous dans les bois Pen-dant que le loup n'y~est pas. " +
+      "Si le loup y é-tait, Il nous man-ge-rait, " +
+      "Mais com-me~il n'y est pas, Il nous man-ge-ra pas. " +
+      "Loup, y es-tu ? Que fais-tu ? En-tends-tu ?",
+    ],
   },
   paroles:
     "Promenons-nous dans les bois\nPendant que le loup n'y est pas.\nSi le loup y était,\nIl nous mangerait,\nMais comme il n'y est pas,\nIl nous mangera pas.\n" +
