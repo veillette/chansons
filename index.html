@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chansons pour enfants</title>
+  <meta name="description" content="Des chansons enfantines et berceuses illustrées, à lire, écouter et imprimer.">
+  <link rel="icon" href="icones/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#7950f2">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Chansons">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="entete">
+    <a class="entete__logo" href="index.html"><span aria-hidden="true">🎵</span> Chansons pour enfants</a>
+    <div class="entete__actions">
+      <button class="bouton bouton--secondaire" id="installer" type="button" hidden>📲 Installer l'application</button>
+    </div>
+  </header>
+
+  <main class="contenu">
+    <section class="intro">
+      <h1>Mes chansons</h1>
+      <p>Choisis une chanson pour la chanter en regardant les images, écoute son air avec 🎵, ou imprime-la pour en faire un petit livre.</p>
+    </section>
+
+    <section class="recueil">
+      <p><strong>Le recueil</strong> : toutes les chansons dans un seul livret, avec un sommaire.</p>
+      <div class="recueil__actions">
+        <a class="bouton" href="lire.html?recueil">📖 Lire le recueil</a>
+        <a class="bouton bouton--secondaire" href="imprimer.html?recueil">🖨️ Imprimer le recueil</a>
+      </div>
+    </section>
+
+    <section id="etageres" class="etageres" aria-live="polite">
+      <p class="message">Chargement des chansons…</p>
+    </section>
+  </main>
+
+  <script src="chansons/catalogue.js"></script>
+  <script src="js/chansons.js"></script>
+  <script src="js/melodie.js"></script>
+  <script src="js/bibliotheque.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+name: Publier le site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Vérifier les chansons, les mélodies et les images
+        run: python3 outils/verifier.py
+
+      - name: Vérifier que les images sont à jour avec le générateur
+        run: |
+          python3 outils/illustrer/generer.py > /dev/null
+          if [ -n "$(git status --porcelain -- chansons)" ]; then
+            echo "Des images diffèrent de outils/illustrer : relancer generer.py et valider le résultat."
+            git status --short -- chansons
+            exit 1
+          fi
+
+      - name: Préparer le site (sans les outils de dessin)
+        run: |
+          rsync -a ./ _site/ \
+            --exclude .git --exclude .github --exclude _site \
+            --exclude __pycache__ --exclude outils/illustrer --exclude 'outils/*.py'
+
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - id: deploiement
+        uses: actions/deploy-pages@v5

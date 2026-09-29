@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Imprimer une chanson</title>
+  <link rel="icon" href="icones/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#7950f2">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Chansons">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style id="format-papier"></style>
+</head>
+<body>
+  <header class="entete">
+    <a class="entete__logo" href="index.html"><span aria-hidden="true">🎵</span> Chansons</a>
+    <p class="entete__titre" id="titre"></p>
+    <div class="entete__actions">
+      <a class="bouton bouton--secondaire" id="lire" href="lire.html">📖 Lire</a>
+    </div>
+  </header>
+
+  <main class="impression">
+    <form class="reglages" id="reglages">
+      <h2>Imprimer</h2>
+
+      <fieldset>
+        <legend>Papier</legend>
+        <div class="choix">
+          <label><input type="radio" name="papier" value="lettre" checked><span>Lettre (8½ × 11)</span></label>
+          <label><input type="radio" name="papier" value="a4"><span>A4</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Mise en page</legend>
+        <div class="choix">
+          <label><input type="radio" name="mode" value="livret" checked><span>Livret à plier</span></label>
+          <label><input type="radio" name="mode" value="pages"><span>Une page par feuille</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset id="choix-faces">
+        <legend>Faces à imprimer</legend>
+        <div class="choix">
+          <label><input type="radio" name="faces" value="toutes" checked><span>Recto verso</span></label>
+          <label><input type="radio" name="faces" value="recto"><span>Rectos</span></label>
+          <label><input type="radio" name="faces" value="verso"><span>Versos</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Marge blanche</legend>
+        <div class="choix">
+          <label><input type="radio" name="marge" value="0"><span>Aucune</span></label>
+          <label><input type="radio" name="marge" value="5" checked><span>5 mm</span></label>
+          <label><input type="radio" name="marge" value="10"><span>10 mm</span></label>
+        </div>
+      </fieldset>
+
+      <div class="aide" id="aide"></div>
+
+      <button class="bouton" type="button" id="imprimer">🖨️ Imprimer</button>
+    </form>
+
+    <section class="apercu" aria-label="Aperçu des feuilles">
+      <p class="apercu__resume" id="resume">Chargement…</p>
+      <div class="apercu__feuilles" id="feuilles"></div>
+    </section>
+  </main>
+
+  <script src="chansons/catalogue.js"></script>
+  <script src="js/chansons.js"></script>
+  <script src="js/imposition.js"></script>
+  <script src="js/impression.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

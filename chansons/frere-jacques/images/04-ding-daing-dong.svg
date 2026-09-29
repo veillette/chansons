@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+
+<rect x="0" y="0" width="800" height="800" fill="#fff3bf"/>
+<polygon points="400,330 1100,330 1076.5,510" fill="#ffe066"/>
+<polygon points="400,330 1006.2,680 895.9,824.1" fill="#ffe066"/>
+<polygon points="400,330 750,936.2 582.4,1005.8" fill="#ffe066"/>
+<polygon points="400,330 400,1030 220,1006.5" fill="#ffe066"/>
+<polygon points="400,330 50,936.2 -94.1,825.9" fill="#ffe066"/>
+<polygon points="400,330 -206.2,680 -275.8,512.4" fill="#ffe066"/>
+<polygon points="400,330 -300,330 -276.5,150" fill="#ffe066"/>
+<polygon points="400,330 -206.2,-20 -95.9,-164.1" fill="#ffe066"/>
+<polygon points="400,330 50,-276.2 217.6,-345.8" fill="#ffe066"/>
+<polygon points="400,330 400,-370 580,-346.5" fill="#ffe066"/>
+<polygon points="400,330 750,-276.2 894.1,-165.9" fill="#ffe066"/>
+<polygon points="400,330 1006.2,-20 1075.8,147.6" fill="#ffe066"/>
+<g transform="translate(400 60) scale(1.9 1.9)"><rect x="-16" y="-6" width="32" height="16" rx="5" fill="#868e96"/><path d="M -46 110 Q -46 30 -30 12 Q 0 -8 30 12 Q 46 30 46 110 Q 62 118 62 126 L -62 126 Q -62 118 -46 110 Z" fill="#ffd43b" stroke="#bf9f2c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M -24 40 Q -30 70 -30 100" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/><line x1="0" y1="20" x2="24" y2="126" stroke="#495057" stroke-width="5" stroke-linecap="round"/><circle cx="24" cy="132" r="11" fill="#495057"/><path d="M 86.4 34 Q 105.60000000000001 80 86.4 138" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/><path d="M -86.4 34 Q -105.60000000000001 80 -86.4 138" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/><path d="M 109.8 28 Q 134.20000000000002 80 109.8 146" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/><path d="M -109.8 28 Q -134.20000000000002 80 -109.8 146" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/><path d="M 133.20000000000002 22 Q 162.8 80 133.20000000000002 154" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/><path d="M -133.20000000000002 22 Q -162.8 80 -133.20000000000002 154" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/></g>
+<text x="150" y="560" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="70" text-anchor="middle" fill="#e8590c" transform="rotate(-14 150 560)">Ding !</text>
+<text x="400" y="660" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="70" text-anchor="middle" fill="#e8590c">Daing !</text>
+<text x="650" y="560" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="70" text-anchor="middle" fill="#e8590c" transform="rotate(14 650 560)">Dong !</text>
+</svg>

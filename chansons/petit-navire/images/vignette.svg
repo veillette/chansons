@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" width="400" height="270">
+
+<rect x="0" y="0" width="400" height="200" fill="#a5d8ff"/>
+<rect x="0" y="200" width="400" height="70" fill="#1c7ed6"/>
+<g transform="translate(200 215) scale(0.52 0.52)"><line x1="0" y1="-40" x2="0" y2="-400" stroke="#8d5524" stroke-width="10" stroke-linecap="round"/><path d="M 10 -390 Q 150 -260 170 -60 L 10 -60 Z" fill="#fff9db" stroke="#d8d3ba" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M -10 -350 Q -120 -220 -170 -60 L -10 -60 Z" fill="#fff9db" stroke="#d8d3ba" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><polygon points="0,-400 70,-385 0,-370" fill="#4dabf7"/><path d="M -240 -60 L 250 -60 Q 230 30 150 40 L -160 40 Q -230 20 -240 -60 Z" fill="#c92a2a"/><rect x="-236" y="-70" width="484" height="18" rx="6" fill="#961f1f"/><circle cx="-150" cy="-10" r="12" fill="#fff4e6" stroke="#8c1d1d" stroke-width="4"/><circle cx="-80" cy="-10" r="12" fill="#fff4e6" stroke="#8c1d1d" stroke-width="4"/><circle cx="-10" cy="-10" r="12" fill="#fff4e6" stroke="#8c1d1d" stroke-width="4"/><circle cx="60" cy="-10" r="12" fill="#fff4e6" stroke="#8c1d1d" stroke-width="4"/><circle cx="130" cy="-10" r="12" fill="#fff4e6" stroke="#8c1d1d" stroke-width="4"/></g>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+
+<rect x="0" y="0" width="800" height="600" fill="#5f3dc4"/>
+<rect x="0" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="60" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="120" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="180" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="240" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="300" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="360" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="420" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="480" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="540" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="600" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="660" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="720" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="780" y="0" width="24" height="600" fill="#7048e8" opacity="0.35"/>
+<rect x="0" y="600" width="800" height="200" fill="#4a3b8f"/>
+<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<rect x="0" y="586" width="800" height="16" fill="#3b2f7a"/>
+<g><rect x="72" y="82" width="216" height="196" rx="6" fill="#dbe4ff"/><rect x="80" y="90" width="200" height="180" fill="#1c2a52"/><circle cx="220" cy="144" r="16" fill="#fff3bf"/><circle cx="120" cy="135" r="2.5" fill="#fff"/><circle cx="160" cy="198" r="2" fill="#fff"/><circle cx="250" cy="225" r="2.5" fill="#fff"/><rect x="176" y="90" width="8" height="180" fill="#dbe4ff"/><rect x="80" y="176" width="200" height="8" fill="#dbe4ff"/><path d="M 60 76 L 110 76 Q 90 180.0 110 290 L 60 290 Z" fill="#fcc419"/><path d="M 300 76 L 250 76 Q 270 180.0 250 290 L 300 290 Z" fill="#fcc419"/><rect x="50" y="68" width="260" height="12" rx="6" fill="#adb5bd"/></g>
+<g><rect x="226" y="530" width="28" height="230" rx="10" fill="#c68642"/><rect x="706" y="590" width="28" height="170" rx="10" fill="#c68642"/><rect x="240" y="650" width="480" height="60" rx="10" fill="#fff"/><rect x="260" y="610" width="110" height="50" rx="22" fill="#fff" stroke="#e9ecef" stroke-width="3"/><rect x="350" y="635" width="370" height="85" rx="18" fill="#f8f9fa"/><rect x="240" y="710" width="480" height="30" rx="6" fill="#c68642"/></g>
+<g transform="translate(360 680)"><rect x="-26" y="-52" width="20" height="46" rx="8" fill="#f1f3f5"/><rect x="6" y="-52" width="20" height="46" rx="8" fill="#f1f3f5"/><ellipse cx="-17" cy="-6" rx="16" ry="9" fill="#343a40"/><ellipse cx="17" cy="-6" rx="16" ry="9" fill="#343a40"/><path d="M -32 -106 Q 0 -112 32 -106 L 40 -46 Q 0 -36 -40 -46 Z" fill="#f8f9fa"/><rect x="-38" y="-62" width="76" height="10" rx="5" fill="#bababb"/><path d="M -30 -108 Q 0 -86 30 -108 Q 0 -96 -30 -108 Z" fill="#fff"/><path d="M -28 -98 Q -48 -63 -52 -40" fill="none" stroke="#f8f9fa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><path d="M 28 -98 Q 48 -63 52 -40" fill="none" stroke="#f8f9fa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-52" cy="-40" r="10.5" fill="#fbd9bd"/><circle cx="52" cy="-40" r="10.5" fill="#fbd9bd"/><rect x="-9" y="-116" width="18" height="16" fill="#fbd9bd"/><circle cx="-49" cy="-148" r="11" fill="#fbd9bd"/><circle cx="49" cy="-148" r="11" fill="#fbd9bd"/><circle cx="0" cy="-150" r="50" fill="#fbd9bd"/><ellipse cx="-30" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.6"/><ellipse cx="30" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.6"/><path d="M -26 -151 Q -18 -143 -10 -151" fill="none" stroke="#2b2b3a" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M 10 -151 Q 18 -143 26 -151" fill="none" stroke="#2b2b3a" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M -4 -134 Q 0 -130 4 -134" fill="none" stroke="#bca28d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="0" cy="-118" rx="3.5" ry="4.5" fill="#2b2b3a"/><path d="M -52 -146 Q -58 -208 0 -208 Q 58 -208 52 -146 Q 46 -170 24 -176 Q 30 -186 18 -188 Q 6 -174 -20 -178 Q -44 -174 -52 -146 Z" fill="#2b2b3a"/></g><g transform="translate(360 680)"><circle cx="0" cy="-100" r="7" fill="#2b2b3a"/><circle cx="0" cy="-76" r="7" fill="#2b2b3a"/><circle cx="0" cy="-52" r="7" fill="#2b2b3a"/><path d="M -50 -196 Q 0 -232 50 -196 Q 0 -206 -50 -196 Z" fill="#343a40"/></g>
+<rect x="230" y="610" width="480" height="100" rx="20" fill="#f8f9fa"/>
+<g><text x="470" y="360" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="33.8" text-anchor="middle" fill="#fff3bf">z</text><text x="501.2" y="326.2" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="44.2" text-anchor="middle" fill="#fff3bf">z</text><text x="540.2" y="282" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="57.2" text-anchor="middle" fill="#fff3bf">Z</text></g>
+</svg>

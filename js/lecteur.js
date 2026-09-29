@@ -1,0 +1,212 @@
+/* Lecteur : feuilleter une chanson (ou le recueil) page par page (ou en double page sur grand écran). */
+(async function () {
+  "use strict";
+
+  const scene = document.getElementById("scene");
+  const position = document.getElementById("position");
+  const precedent = document.getElementById("precedent");
+  const suivant = document.getElementById("suivant");
+  const boutonVoix = document.getElementById("voix");
+  const boutonAir = document.getElementById("air");
+
+  let chanson;
+  try {
+    chanson = await Chansonnier.depuisAdresse();
+  } catch (err) {
+    scene.innerHTML = "";
+    const p = document.createElement("p");
+    p.className = "message message--erreur";
+    p.textContent = err.message;
+    scene.appendChild(p);
+    precedent.disabled = suivant.disabled = true;
+    return;
+  }
+
+  document.title = chanson.titre;
+  document.getElementById("titre").textContent = chanson.titre;
+  document.getElementById("imprimer").href = `imprimer.html?${Chansonnier.parametre(chanson)}`;
+
+  const total = chanson.pages.length;
+  const dernierePageSeule = chanson.pages[total - 1].type === "quatrieme";
+
+  /* Découpe la chanson en « vues » : une page à la fois, ou des doubles pages. */
+  function calculerVues(double) {
+    if (!double) return chanson.pages.map((_, i) => [i]);
+    const vues = [[0]];
+    let i = 1;
+    while (i < total) {
+      const seule = i === total - 1 || (dernierePageSeule && i + 1 === total - 1);
+      if (seule) {
+        vues.push([i]);
+        i += 1;
+      } else {
+        vues.push([i, i + 1]);
+        i += 2;
+      }
+    }
+    return vues;
+  }
+
+  const modeDouble = () => window.innerWidth >= 900 && window.innerWidth > window.innerHeight * 1.15;
+
+  let double = modeDouble();
+  let vues = calculerVues(double);
+  let vue = 0;
+
+  // Ouvrir à la page indiquée dans l'adresse (#p5), si présente.
+  function pageDeLAdresse() {
+    const page = parseInt((location.hash.match(/^#p(\d+)$/) || [])[1], 10);
+    return page >= 0 && page < total ? page : null;
+  }
+  const depart = pageDeLAdresse();
+  if (depart != null) vue = vues.findIndex((v) => v.includes(depart));
+
+  window.addEventListener("hashchange", () => {
+    const page = pageDeLAdresse();
+    if (page == null) return;
+    vue = vues.findIndex((v) => v.includes(page));
+    afficher();
+  });
+
+  function afficher() {
+    arreterVoix();
+    arreterAir();
+    const pages = vues[vue];
+    const conteneur = document.createElement("div");
+    conteneur.className = "double-page";
+    conteneur.style.setProperty("--nb", double ? 2 : 1);
+    pages.forEach((i) => conteneur.appendChild(Chansonnier.creerPage(chanson, chanson.pages[i], i)));
+    scene.replaceChildren(conteneur);
+
+    const libelle = pages.length > 1 ? `Pages ${pages[0]}–${pages[1]}` : pages[0] === 0 ? "Couverture" : `Page ${pages[0]}`;
+    position.textContent = `${libelle} / ${total - 1}`;
+    precedent.disabled = vue === 0;
+    suivant.disabled = vue === vues.length - 1;
+    history.replaceState(null, "", `#p${pages[0]}`);
+
+    // Précharger les images de la vue suivante.
+    (vues[vue + 1] || []).forEach((i) => {
+      const src = chanson.pages[i].image;
+      if (src) new Image().src = Chansonnier.cheminImage(chanson, src, chanson.pages[i]);
+    });
+
+    // L'air de la page (recueil) ou de la chanson.
+    boutonAir.hidden = !Melodie.disponible() || !melodieCourante();
+  }
+
+  function aller(delta) {
+    const cible = Math.min(Math.max(vue + delta, 0), vues.length - 1);
+    if (cible !== vue) {
+      vue = cible;
+      afficher();
+    }
+  }
+
+  precedent.addEventListener("click", () => aller(-1));
+  suivant.addEventListener("click", () => aller(1));
+
+  document.addEventListener("keydown", (e) => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    // Espace sur un bouton ou un lien : laisser le navigateur l'activer.
+    if (e.key === " " && e.target.closest("button, a, input, select, textarea")) return;
+    if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
+      e.preventDefault();
+      aller(1);
+    } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+      e.preventDefault();
+      aller(-1);
+    } else if (e.key === "Home") {
+      vue = 0;
+      afficher();
+    } else if (e.key === "End") {
+      vue = vues.length - 1;
+      afficher();
+    }
+  });
+
+  // Glisser du doigt sur tablette / téléphone.
+  // Un geste à deux doigts (zoom) ou surtout vertical ne tourne pas la page.
+  let debut = null;
+  scene.addEventListener(
+    "touchstart",
+    (e) => {
+      debut = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+    },
+    { passive: true }
+  );
+  scene.addEventListener("touchend", (e) => {
+    if (debut == null || e.touches.length > 0) {
+      debut = null;
+      return;
+    }
+    const dx = e.changedTouches[0].clientX - debut.x;
+    const dy = e.changedTouches[0].clientY - debut.y;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > 2 * Math.abs(dy)) aller(dx < 0 ? 1 : -1);
+    debut = null;
+  });
+  scene.addEventListener("touchcancel", () => (debut = null));
+
+  window.addEventListener("resize", () => {
+    const nouveau = modeDouble();
+    if (nouveau === double) return;
+    const premiere = vues[vue][0];
+    double = nouveau;
+    vues = calculerVues(double);
+    vue = vues.findIndex((v) => v.includes(premiere));
+    afficher();
+  });
+
+  // Lecture à voix haute (si le navigateur la propose).
+  const synthese = window.speechSynthesis;
+  function arreterVoix() {
+    if (synthese && synthese.speaking) synthese.cancel();
+    boutonVoix.textContent = "🔊 Écouter";
+  }
+
+  if (synthese && "SpeechSynthesisUtterance" in window) {
+    boutonVoix.hidden = false;
+    boutonVoix.addEventListener("click", () => {
+      if (synthese.speaking) {
+        arreterVoix();
+        return;
+      }
+      arreterAir();
+      const texte = vues[vue].map((i) => Chansonnier.texteLisible(chanson, chanson.pages[i])).filter(Boolean).join(" ");
+      if (!texte) return;
+      const phrase = new SpeechSynthesisUtterance(texte);
+      phrase.lang = chanson.langue || "fr-FR";
+      phrase.rate = 0.9;
+      const voix = synthese.getVoices().find((v) => v.lang && v.lang.startsWith("fr"));
+      if (voix) phrase.voice = voix;
+      phrase.onend = () => (boutonVoix.textContent = "🔊 Écouter");
+      boutonVoix.textContent = "⏹️ Arrêter";
+      synthese.speak(phrase);
+    });
+  }
+
+  // Jouer l'air de la chanson.
+  function melodieCourante() {
+    const page = vues[vue].map((i) => chanson.pages[i]).find((p) => p.melodie);
+    return page ? page.melodie : chanson.melodie;
+  }
+
+  function arreterAir() {
+    Melodie.arreter();
+    boutonAir.textContent = "🎵 Jouer l'air";
+  }
+
+  boutonAir.addEventListener("click", async () => {
+    if (Melodie.joue()) {
+      arreterAir();
+      return;
+    }
+    arreterVoix();
+    boutonAir.textContent = "⏹️ Arrêter l'air";
+    await Melodie.jouer(melodieCourante());
+    boutonAir.textContent = "🎵 Jouer l'air";
+  });
+
+  window.addEventListener("pagehide", arreterAir);
+
+  afficher();
+})();

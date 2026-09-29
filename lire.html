@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lire une chanson</title>
+  <link rel="icon" href="icones/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#7950f2">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Chansons">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="lecteur">
+  <header class="entete">
+    <a class="entete__logo" href="index.html"><span aria-hidden="true">🎵</span> Chansons</a>
+    <p class="entete__titre" id="titre"></p>
+    <div class="entete__actions">
+      <button class="bouton bouton--secondaire" id="air" type="button" hidden>🎵 Jouer l'air</button>
+      <button class="bouton bouton--secondaire" id="voix" type="button" hidden>🔊 Écouter</button>
+      <a class="bouton" id="imprimer" href="imprimer.html">🖨️ Imprimer</a>
+    </div>
+  </header>
+
+  <main class="scene" id="scene" aria-live="polite">
+    <p class="message">Chargement de la chanson…</p>
+  </main>
+
+  <nav class="navigation" aria-label="Pages">
+    <button class="bouton bouton--rond" id="precedent" type="button" aria-label="Page précédente">◀</button>
+    <span class="navigation__position" id="position"></span>
+    <button class="bouton bouton--rond" id="suivant" type="button" aria-label="Page suivante">▶</button>
+  </nav>
+
+  <script src="chansons/catalogue.js"></script>
+  <script src="js/chansons.js"></script>
+  <script src="js/melodie.js"></script>
+  <script src="js/lecteur.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>
