@@ -1,6 +1,6 @@
 /*
  * Mélodie : joue l'air d'une chanson avec le synthétiseur du navigateur
- * (Web Audio), avec un son doux de boîte à musique.
+ * (Web Audio), avec un timbre doux de piano feutré.
  *
  * Notation (champ `melodie` d'une chanson) :
  *   { tempo: 100, notes: "do4 do4 do4 ré4 | mi4:2 ré4:2 | do4 mi4 ré4 ré4 | do4:4" }
@@ -44,8 +44,63 @@
     return notes;
   }
 
+  const DUREE_ECHANTILLON = 4;
+  const echantillons = new Map();
   let contexte = null;
-  let enCours = null; // { sortie, minuterie, fin }
+  let enCours = null; // { sortie, sources, minuterie, fin }
+
+  /* Un échantillon par hauteur, réutilisé pour chaque occurrence de la note.
+     Les harmoniques aiguës s'éteignent plus vite, comme sur un instrument frappé. */
+  function echantillon(frequence) {
+    if (echantillons.has(frequence)) return echantillons.get(frequence);
+    const taux = Math.min(contexte.sampleRate, 24000);
+    const taille = Math.ceil(DUREE_ECHANTILLON * taux);
+    const tampon = contexte.createBuffer(1, taille, taux);
+    const donnees = tampon.getChannelData(0);
+    const harmoniques = [
+      [1, 1, 2.1],
+      [1.997, 0.22, 1.7],
+      [2.003, 0.24, 1.15],
+      [3.006, 0.09, 0.62],
+      [4.018, 0.035, 0.36],
+    ].filter(([multiple]) => frequence * multiple < taux * 0.45);
+    let graine = 12345;
+    for (let i = 0; i < taille; i++) {
+      const t = i / taux;
+      let valeur = 0;
+      for (const [multiple, amplitude, decroissance] of harmoniques) {
+        valeur += amplitude * Math.exp(-t / decroissance) * Math.sin(2 * Math.PI * frequence * multiple * t);
+      }
+      // Le léger bruit initial évoque le contact du marteau avec la corde.
+      graine = (Math.imul(graine, 1664525) + 1013904223) >>> 0;
+      valeur += ((graine / 4294967296) * 2 - 1) * 0.045 * Math.exp(-t / 0.012);
+      const attaque = Math.min(1, t / 0.004);
+      const fin = Math.min(1, (DUREE_ECHANTILLON - t) / 0.18);
+      donnees[i] = valeur * attaque * fin * 0.58;
+    }
+    echantillons.set(frequence, tampon);
+    return tampon;
+  }
+
+  /* Petite réverbération stéréo calculée une seule fois, sans fichier ni réseau. */
+  let impulsion = null;
+  function reverberation() {
+    if (impulsion) return impulsion;
+    const taux = contexte.sampleRate;
+    const taille = Math.ceil(0.9 * taux);
+    impulsion = contexte.createBuffer(2, taille, taux);
+    for (let canal = 0; canal < 2; canal++) {
+      const donnees = impulsion.getChannelData(canal);
+      let graine = 731 + canal * 97;
+      for (let i = 0; i < taille; i++) {
+        const t = i / taux;
+        graine = (Math.imul(graine, 1664525) + 1013904223) >>> 0;
+        // Une courte prédélai laisse chaque attaque bien distincte.
+        donnees[i] = t < 0.022 ? 0 : ((graine / 4294967296) * 2 - 1) * Math.exp(-t * 7) * 0.12;
+      }
+    }
+    return impulsion;
+  }
 
   function disponible() {
     return Boolean(window.AudioContext || window.webkitAudioContext);
@@ -53,13 +108,16 @@
 
   function arreter() {
     if (!enCours) return;
-    const { sortie, minuterie, fin } = enCours;
+    const { sortie, sources, minuterie, fin } = enCours;
     enCours = null;
     clearTimeout(minuterie);
     const t = contexte.currentTime;
     sortie.gain.cancelScheduledValues(t);
     sortie.gain.setValueAtTime(sortie.gain.value, t);
     sortie.gain.linearRampToValueAtTime(0, t + 0.05);
+    for (const source of sources) {
+      try { source.stop(t + 0.06); } catch { /* déjà terminée */ }
+    }
     setTimeout(() => sortie.disconnect(), 100);
     fin();
   }
@@ -75,41 +133,54 @@
     if (contexte.state === "suspended") contexte.resume();
 
     const sortie = contexte.createGain();
-    sortie.gain.value = 0.25;
+    sortie.gain.value = 0.32;
+    const sec = contexte.createGain();
+    sec.gain.value = 0.9;
+    sec.connect(sortie);
+    const effet = contexte.createConvolver();
+    effet.buffer = reverberation();
+    const filtre = contexte.createBiquadFilter();
+    filtre.type = "lowpass";
+    filtre.frequency.value = 3200;
+    const humide = contexte.createGain();
+    humide.gain.value = 0.12;
+    effet.connect(filtre).connect(humide).connect(sortie);
     sortie.connect(contexte.destination);
 
+    // Préparer les hauteurs avant de fixer l'heure de départ : sur un appareil
+    // lent, leur calcul ne doit pas comprimer les premières notes.
+    for (const note of notes) if (note.frequence) echantillon(note.frequence);
     let t = contexte.currentTime + 0.08;
+    const sources = [];
     for (const note of notes) {
       const duree = note.duree * temps;
       if (note.frequence) {
-        // Fondamentale (triangle) + une octave au-dessus très discrète (sinus).
-        [
-          ["triangle", 1, 0.9],
-          ["sine", 2, 0.18],
-        ].forEach(([forme, multiple, volume]) => {
-          const osc = contexte.createOscillator();
-          const env = contexte.createGain();
-          osc.type = forme;
-          osc.frequency.value = note.frequence * multiple;
-          env.gain.setValueAtTime(0.0001, t);
-          env.gain.exponentialRampToValueAtTime(volume, t + 0.015);
-          env.gain.exponentialRampToValueAtTime(volume * 0.35, t + Math.min(0.25, duree * 0.6));
-          env.gain.exponentialRampToValueAtTime(0.0001, t + duree * 0.97);
-          osc.connect(env).connect(sortie);
-          osc.start(t);
-          osc.stop(t + duree);
-        });
+        const source = contexte.createBufferSource();
+        const env = contexte.createGain();
+        source.buffer = echantillon(note.frequence);
+        const fin = t + Math.min(duree, DUREE_ECHANTILLON - 0.02);
+        const relachement = Math.min(0.12, duree * 0.25);
+        env.gain.setValueAtTime(0, t);
+        env.gain.linearRampToValueAtTime(1, t + 0.006);
+        env.gain.setValueAtTime(1, Math.max(t + 0.006, fin - relachement));
+        env.gain.linearRampToValueAtTime(0, fin);
+        source.connect(env);
+        env.connect(sec);
+        env.connect(effet);
+        source.start(t);
+        source.stop(fin);
+        sources.push(source);
       }
       t += duree;
     }
 
     return new Promise((resolve) => {
-      const total = (t - contexte.currentTime) * 1000;
-      enCours = { sortie, fin: resolve, minuterie: setTimeout(() => {
+      const total = (t - contexte.currentTime + 0.9) * 1000;
+      enCours = { sortie, sources, fin: resolve, minuterie: setTimeout(() => {
         enCours = null;
         sortie.disconnect();
         resolve();
-      }, total + 100) };
+      }, total) };
     });
   }
 

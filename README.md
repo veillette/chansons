@@ -162,8 +162,8 @@ Ses images sont dans `chansons/partitions/images/`.
 
 ### Mélodie
 
-Le champ `melodie` est joué par le navigateur (Web Audio, son de boîte à musique),
-sans aucun fichier audio :
+Le champ `melodie` est joué par le navigateur (Web Audio, timbre doux de piano
+feutré et légère réverbération), sans fichier audio ni téléchargement :
 
 - une note : `do ré mi fa sol la si`, puis `#` (dièse) ou `b` (bémol)
   facultatif, puis l'octave (`4` = octave du do du milieu, par défaut) ;
