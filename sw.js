@@ -18,7 +18,7 @@
  *  - sur localhost : toujours le réseau d'abord, pour voir tout de suite les
  *    images régénérées pendant qu'on dessine.
  */
-const VERSION = "v3";
+const VERSION = "v4";
 const CACHE = `chansons-${VERSION}`;
 
 const INTERFACE = [

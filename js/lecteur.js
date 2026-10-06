@@ -203,7 +203,7 @@
     arreterVoix();
     boutonAir.textContent = "⏹️ Arrêter l'air";
     await Melodie.jouer(melodieCourante());
-    boutonAir.textContent = "🎵 Jouer l'air";
+    if (!Melodie.joue()) boutonAir.textContent = "🎵 Jouer l'air";
   });
 
   window.addEventListener("pagehide", arreterAir);
