@@ -18,7 +18,7 @@ Chansonnier.ajouter({
       "sol3:0.5 | do4 do4:0.5 do4 ré4:0.5 | mi4:1.5 do4 mi4:0.5 | mi4 mi4:0.5 fa4 mi4:0.5 | ré4:2.5 ré4:0.5 | " +
       "ré4 ré4:0.5 ré4 mi4:0.5 | fa4:1.5 ré4 mi4:0.5 | mi4 ré4:0.5 do4 si3:0.5 | do4:2.5 sol4:0.5 | " +
       "sol4 sol4:0.5 la4 sol4:0.5 | fa4:1.5 mi4 fa4:0.5 | fa4 fa4:0.5 sol4 fa4:0.5 | mi4:2.5 mi4:0.5 | " +
-      "mi4 mi4:0.5 fa4 mi4:0.5 | ré4:1.5 do4 ré4:0.5 | ré4 mi4:0.5 ré4 si3:0.5 | do4:3",
+      "mi4 mi4:0.5 fa4 mi4:0.5 | ré4:1.5 do4 ré4:0.5 | ré4 mi4:0.5 ré4 si3:0.5 | do4:2.5",
     syllabes: [
       "Il pleut, il pleut, ber-gè-re, Pres-se tes blancs mou-tons, " +
       "Al-lons sous ma chau-miè-re, Ber-gè-re, vi-te~al-lons. " +

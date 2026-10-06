@@ -126,7 +126,14 @@
   function jouer(melodie) {
     arreter();
     if (!melodie || !disponible()) return Promise.resolve();
-    const notes = analyser(melodie.notes);
+    let notes;
+    try {
+      notes = analyser(melodie.notes);
+    } catch (err) {
+      // Une mélodie mal écrite ne doit pas bloquer les boutons (outils/verifier.py la signale).
+      console.error(err);
+      return Promise.resolve();
+    }
     const temps = 60 / (melodie.tempo || 100);
 
     contexte = contexte || new (window.AudioContext || window.webkitAudioContext)();
@@ -151,15 +158,19 @@
     // lent, leur calcul ne doit pas comprimer les premières notes.
     for (const note of notes) if (note.frequence) echantillon(note.frequence);
     let t = contexte.currentTime + 0.08;
+    let finSon = t;
     const sources = [];
-    for (const note of notes) {
+    // La dernière note résonne au moins un temps, même raccourcie par l'anacrouse.
+    const derniere = notes.map((n) => n.frequence != null).lastIndexOf(true);
+    notes.forEach((note, i) => {
       const duree = note.duree * temps;
       if (note.frequence) {
+        const sonne = i === derniere ? Math.max(duree, temps) : duree;
         const source = contexte.createBufferSource();
         const env = contexte.createGain();
         source.buffer = echantillon(note.frequence);
-        const fin = t + Math.min(duree, DUREE_ECHANTILLON - 0.02);
-        const relachement = Math.min(0.12, duree * 0.25);
+        const fin = t + Math.min(sonne, DUREE_ECHANTILLON - 0.02);
+        const relachement = Math.min(0.12, sonne * 0.25);
         env.gain.setValueAtTime(0, t);
         env.gain.linearRampToValueAtTime(1, t + 0.006);
         env.gain.setValueAtTime(1, Math.max(t + 0.006, fin - relachement));
@@ -170,12 +181,13 @@
         source.start(t);
         source.stop(fin);
         sources.push(source);
+        finSon = Math.max(finSon, fin);
       }
       t += duree;
-    }
+    });
 
     return new Promise((resolve) => {
-      const total = (t - contexte.currentTime + 0.9) * 1000;
+      const total = (Math.max(t, finSon) - contexte.currentTime + 0.9) * 1000;
       enCours = { sortie, sources, fin: resolve, minuterie: setTimeout(() => {
         enCours = null;
         sortie.disconnect();

@@ -115,9 +115,20 @@ def erreurs_partition(melodie):
             if position and min(reste, barre - reste) > 1e-6:
                 erreurs.append(f"melodie : barre « | » au milieu d'une mesure (après {position:g} temps).")
             continue
-        duree = jeton.split(":")[1] if ":" in jeton else "1"
-        position += float(duree)
+        duree = float(jeton.split(":")[1]) if ":" in jeton else 1.0
+        # js/partition.js n'écrit que des durées multiples de la double croche.
+        if duree <= 0 or abs(duree * 4 - round(duree * 4)) > 1e-6:
+            erreurs.append(f"melodie : durée « {jeton} » impossible à écrire (multiple de 0.25 attendu).")
+        position += duree
         notes += not jeton.startswith("-")
+    # La dernière mesure complète l'anacrouse : toute la mélodie fait un nombre entier de mesures.
+    reste = position % barre
+    if min(reste, barre - reste) > 1e-6:
+        manque = barre - anacrouse if anacrouse else barre
+        erreurs.append(
+            f"melodie : {position:g} temps en tout, pas un nombre entier de mesures de {barre:g} temps "
+            f"(la dernière mesure doit faire {manque:g} temps)."
+        )
     for numero, couplet in enumerate(melodie.get("syllabes") or []):
         if not isinstance(couplet, str):
             erreurs.append(f"melodie : couplet {numero + 1} des syllabes invalide.")
@@ -125,6 +136,27 @@ def erreurs_partition(melodie):
             erreurs.append(f"melodie : couplet {numero + 1} : {len(syllabes(couplet))} syllabes pour {notes} notes.")
         elif numero == 0 and len(syllabes(couplet)) != notes:
             erreurs.append(f"melodie : couplet 1 : {len(syllabes(couplet))} syllabes pour {notes} notes.")
+    return erreurs
+
+
+def erreurs_hors_ligne():
+    """Les scripts, styles et icônes des pages HTML doivent être dans INTERFACE (sw.js)."""
+    source = (RACINE / "sw.js").read_text(encoding="utf-8")
+    bloc = re.search(r"const INTERFACE = \[(.*?)\];", source, re.S)
+    if not bloc:
+        return ["sw.js : liste INTERFACE introuvable."]
+    interface = set(re.findall(r'"([^"]+)"', bloc[1]))
+    erreurs = []
+    for page in sorted(RACINE.glob("*.html")):
+        if page.name not in interface:
+            erreurs.append(f"sw.js : {page.name} absente de INTERFACE.")
+        html = page.read_text(encoding="utf-8")
+        for chemin in re.findall(r'<(?:script|link)\b[^>]*?\b(?:src|href)="([^"#?:]+)"', html):
+            if chemin not in interface:
+                erreurs.append(f"sw.js : {chemin} (utilisé par {page.name}) absent de INTERFACE : la page ne marcherait pas hors ligne.")
+    for chemin in sorted(interface - {"./"}):
+        if not (RACINE / chemin).is_file():
+            erreurs.append(f"sw.js : {chemin} listé dans INTERFACE mais introuvable.")
     return erreurs
 
 
@@ -197,6 +229,8 @@ def verifier():
                 raise ValueError(f"référence SVG absente : {', '.join(sorted(refs - set(identifiers)))}")
         except (ET.ParseError, ValueError) as erreur:
             erreurs.append(f"{nom} : {erreur}.")
+
+    erreurs.extend(erreurs_hors_ligne())
 
     for erreur in erreurs:
         print(erreur, file=sys.stderr)

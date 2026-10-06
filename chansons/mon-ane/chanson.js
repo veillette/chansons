@@ -21,7 +21,7 @@ Chansonnier.ajouter({
       "ré4:0.5 mi4:0.5 fa4:0.5 mi4:0.5 | ré4:0.5 do4:0.5 ré4 | " +
       "ré4:0.5 mi4:0.5 fa4:0.5 mi4:0.5 | ré4:0.5 do4:0.5 ré4 | " +
       "mi4:0.5 mi4:0.5 fa4:0.5 sol4:0.5 | la4:0.5 la4:0.5 sol4:0.5 sol4:0.5 | " +
-      "mi4:0.5 mi4:0.5 fa4:0.5 ré4:0.5 | ré4 do4",
+      "mi4:0.5 mi4:0.5 fa4:0.5 ré4:0.5 | ré4 do4:0.5",
     syllabes: [
       "Mon â-ne, mon â-ne A bien mal à la tê-te. " +
       "Ma-da-me lui a fait fai-re Un bon-net pour sa fê-te, " +

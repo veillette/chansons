@@ -5,20 +5,21 @@
  * catalogue : on lit `chansons/catalogue.js`, puis chaque `chanson.js` pour y
  * trouver les images.
  *
- * L'installation n'a lieu que quand ce fichier change : après l'ajout d'une
- * chanson ou la modification d'images, augmenter VERSION pour que tout soit
- * de nouveau téléchargé et disponible hors ligne. Les fichiers inchangés
- * sont revalidés auprès du serveur (réponse 304), pas re-téléchargés.
+ * L'installation n'a lieu que quand ce fichier change. À la publication,
+ * .github/workflows/pages.yml remplace VERSION par le numéro du commit : chaque
+ * mise en ligne réinstalle donc tout, et les nouvelles images sont de nouveau
+ * disponibles hors ligne. Les fichiers inchangés sont revalidés auprès du
+ * serveur (réponse 304), pas re-téléchargés.
  *
  * Stratégies :
  *  - pages, scripts, styles : réseau d'abord (pour voir les nouveautés),
- *    cache si hors ligne ;
+ *    cache si hors ligne ou si le réseau tarde plus de DELAI_RESEAU ;
  *  - images et polices : cache seulement, sans requête réseau quand elles y
- *    sont déjà (elles ne changent qu'avec VERSION) ;
+ *    sont déjà (elles ne changent qu'avec VERSION, à chaque publication) ;
  *  - sur localhost : toujours le réseau d'abord, pour voir tout de suite les
  *    images régénérées pendant qu'on dessine.
  */
-const VERSION = "v4";
+const VERSION = "local"; // remplacé à la publication (pages.yml)
 const CACHE = `chansons-${VERSION}`;
 
 const INTERFACE = [
@@ -112,19 +113,32 @@ function cleDeCache(requete) {
   return url.origin + url.pathname;
 }
 
-async function reseauDAbord(requete) {
+/* Sur une connexion très lente, on n'attend pas le réseau plus que ce délai si
+   une copie est en cache ; la réponse du réseau met quand même le cache à jour. */
+const DELAI_RESEAU = 4000;
+
+async function reseauDAbord(requete, event) {
   const cache = await caches.open(CACHE);
-  try {
-    const reponse = await fetch(requete);
+  const reseau = fetch(requete).then(async (reponse) => {
     if (reponse.ok) await cache.put(cleDeCache(requete), reponse.clone());
     return reponse;
-  } catch (err) {
+  });
+  event.waitUntil(reseau.catch(() => null));
+
+  async function secours() {
     const enCache = await cache.match(cleDeCache(requete), { ignoreSearch: requete.mode === "navigate" });
     if (enCache) return enCache;
-    if (requete.mode === "navigate") {
-      const accueil = await cache.match("index.html");
-      if (accueil) return accueil;
-    }
+    if (requete.mode === "navigate") return (await cache.match("index.html")) || null;
+    return null;
+  }
+
+  const attente = new Promise((resolve) => setTimeout(resolve, DELAI_RESEAU)).then(async () => (await secours()) || reseau);
+  try {
+    attente.catch(() => null); // si le réseau a déjà échoué, personne n'attend plus cette promesse
+    return await Promise.race([reseau, attente]);
+  } catch (err) {
+    const copie = await secours();
+    if (copie) return copie;
     throw err;
   }
 }
@@ -147,6 +161,6 @@ self.addEventListener("fetch", (event) => {
   if (!EN_LOCAL && /\.(svg|png|jpe?g|webp|gif|woff2)$/i.test(url.pathname)) {
     event.respondWith(cacheDAbord(requete));
   } else {
-    event.respondWith(reseauDAbord(requete));
+    event.respondWith(reseauDAbord(requete, event));
   }
 });

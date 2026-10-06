@@ -19,7 +19,7 @@ Chansonnier.ajouter({
       "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 ré4 | do4:1.5 mi4:0.5 | " +
       "mi4:0.5 fa4:0.5 sol4:0.5 sol4:0.5 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:1.5 ré4:0.5 | " +
       "ré4:0.5 mi4:0.5 fa4:0.5 fa4:0.5 | fa4:0.5 sol4:0.5 fa4:0.5 mi4:0.5 | ré4:2 | " +
-      "sol4 mi4 | sol4 do4",
+      "sol4 mi4 | sol4 do4:0.5",
     syllabes: [
       "Il é-tait un pe-tit na-vi-re, Il é-tait un pe-tit na-vi-re, " +
       "Qui n'a-vait ja-ja-ja-mais na-vi-gué, Qui n'a-vait ja-ja-ja-mais na-vi-gué, O-hé ! O-hé !",

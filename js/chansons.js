@@ -34,10 +34,11 @@
     return el;
   }
 
-  /* Typographie française : espace insécable fine devant ! ? ; : » et après «,
-     pour que la ponctuation ne se retrouve jamais seule en début de ligne. */
+  /* Typographie française : espace insécable devant ! ? ; : » et après «,
+     pour que la ponctuation ne se retrouve jamais seule en début de ligne.
+     (Les polices du site n'ont pas l'espace fine insécable U+202F.) */
   function typographie(texte) {
-    return texte.replace(/[  ]([!?;:»])/g, " $1").replace(/«[  ]/g, "« ");
+    return texte.replace(/ ([!?;:»])/g, "\u00A0$1").replace(/« /g, "«\u00A0");
   }
 
   /* Un texte est fait de strophes séparées par une ligne vide ; dans une

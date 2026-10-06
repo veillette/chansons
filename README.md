@@ -69,9 +69,11 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface,
 livret de partitions.
 Tout fonctionne ensuite **hors ligne**, mélodies et impression comprises.
 
-**Après l'ajout d'une chanson ou la modification d'images**, augmenter `VERSION`
-en haut de `sw.js` (`"v1"` → `"v2"`) pour que tout soit de nouveau disponible
-hors ligne.
+À chaque publication, GitHub Actions donne à `VERSION` (en haut de `sw.js`) le
+numéro du commit : le service worker se réinstalle et les chansons ajoutées ou
+les images modifiées sont de nouveau disponibles hors ligne, sans rien changer
+à la main. Les pages et les scripts viennent du réseau, mais si celui-ci tarde
+plus de 4 secondes, la copie hors ligne s'affiche.
 
 ## Imprimer
 
@@ -146,9 +148,8 @@ Ses images sont dans `chansons/partitions/images/`.
    ```
 
 4. Ajouter `"ma-chanson"` dans `chansons/catalogue.js`.
-5. Augmenter `VERSION` dans `sw.js`.
-6. Lancer `python3 outils/verifier.py` (la publication échoue si cette
-   vérification trouve une erreur).
+5. Lancer `python3 outils/verifier.py` et `node --test outils/tests/*.test.js`
+   (la publication échoue si l'un des deux trouve une erreur).
 
 ### Paroles
 
@@ -168,7 +169,8 @@ feutré et légère réverbération), sans fichier audio ni téléchargement :
 - une note : `do ré mi fa sol la si`, puis `#` (dièse) ou `b` (bémol)
   facultatif, puis l'octave (`4` = octave du do du milieu, par défaut) ;
 - `:durée` en temps : `:0.5` croche, `:2` blanche, `:1.5` noire pointée
-  (par défaut 1) ;
+  (par défaut 1) ; un multiple de `0.25` (double croche), pour que la partition
+  puisse l'écrire ;
 - `-` est un silence (`-:2` = deux temps) ;
 - `|` (barre de mesure) aide seulement à relire : les barres de la partition
   sont calculées, mais `outils/verifier.py` signale un `|` qui tombe au milieu
@@ -181,6 +183,9 @@ Pour la partition :
   restent comptées en noires : en 6/8, une croche vaut `:0.5` et une mesure
   3 temps ;
 - `anacrouse` : nombre de temps avant la première barre de mesure (facultatif) ;
+  la dernière mesure est alors raccourcie d'autant, pour que la mélodie fasse
+  un nombre entier de mesures (à l'écoute, la dernière note résonne quand même
+  au moins un temps) ;
 - `syllabes` : un couplet par chaîne, **une syllabe par note** (les silences
   n'en prennent pas). Les mots sont séparés par des espaces et les syllabes d'un
   mot par `-` ; `_` prolonge la syllabe précédente sur une note de plus, `*`
@@ -188,9 +193,11 @@ Pour la partition :
   (`vi-te~al-lons`). La ponctuation isolée (`Ah !`) reste avec son mot ;
 - `mesuresParLigne` (facultatif) : impose le nombre de mesures par portée.
 
-`outils/verifier.py` contrôle la syntaxe de chaque mélodie, que ses `|` tombent
-sur des barres de mesure et que le premier couplet a autant de syllabes que de
-notes.
+`outils/verifier.py` contrôle la syntaxe de chaque mélodie, ses durées, que ses
+`|` tombent sur des barres de mesure, que la mélodie fait un nombre entier de
+mesures et que le premier couplet a autant de syllabes que de notes. Il vérifie
+aussi que tous les scripts et styles des pages sont dans la liste `INTERFACE`
+de `sw.js`, sans quoi une page ne marcherait pas hors ligne.
 
 ### Types de pages
 
@@ -219,6 +226,7 @@ polices/            polices Andika et Fredoka (licence OFL), hébergées avec le
 lib/abcjs/          bibliothèque abcjs (licence MIT) qui dessine les partitions
 chansons/           un dossier par chanson + catalogue.js + recueil/ + partitions/
 outils/verifier.py  vérification des chansons, des mélodies et des images
+outils/tests/       tests du livret, des mélodies et des partitions (node --test)
 outils/illustrer/   dessin des illustrations en SVG
 ```
 
@@ -244,6 +252,7 @@ python3 outils/illustrer/generer.py frere-jacques   # une seule chanson
 
 Les images sont écrites dans `chansons/<id>/images/`.
 
-Avant chaque publication, GitHub Actions lance `outils/verifier.py`, puis
-`generer.py` : si les images produites diffèrent de celles du dépôt, la
-publication s'arrête. Seul le site est publié, sans `outils/illustrer/`.
+Avant chaque publication, GitHub Actions lance `outils/verifier.py`, les tests
+de `outils/tests/`, puis `generer.py` : si les images produites diffèrent de
+celles du dépôt, la publication s'arrête. Seul le site est publié, sans
+`outils/`.
