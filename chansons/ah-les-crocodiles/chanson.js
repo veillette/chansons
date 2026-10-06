@@ -11,23 +11,21 @@ Chansonnier.ajouter({
     "Un crocodile très fier part en guerre contre les éléphants, en chantant à grosses dents. " +
     "Mais quand un éléphant paraît… plouf ! Une chanson à chanter en ouvrant grand les bras comme une gueule de crocodile.",
   melodie: {
-    tempo: 100,
+    tempo: 120,
     mesure: "2/4",
-    anacrouse: 0.5,
     notes:
-      "sol3:0.5 | do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 mi4:0.5 fa4:0.5 | mi4 ré4 | ré4:1.5 sol3:0.5 | " +
-      "ré4:0.5 ré4:0.5 ré4:0.5 mi4:0.5 | fa4:0.5 fa4:0.5 fa4 | mi4 ré4 | do4:1.5 sol3:0.5 | " +
-      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 fa4 | mi4 ré4 | ré4:1.5 sol3:0.5 | " +
-      "ré4:0.5 ré4:0.5 ré4:0.5 mi4:0.5 | fa4:0.5 fa4:0.5 fa4 | mi4 ré4 | do4:2 | " +
-      "do5:2 | sol4:0.5 sol4:0.5 sol4:0.5 sol4:0.5 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:0.5 fa4:0.5 sol4:0.5 fa4:0.5 | ré4:2 | " +
-      "mi4:0.5 mi4:0.5 fa4:0.5 fa4:0.5 | sol4:2 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:0.5 mi4:0.5 ré4 | do4:2",
+      "do4 do4:0.75 mi4:0.25 | sol4:1.5 fa4:0.5 | mi4:0.75 ré4:0.25 mi4:0.75 fa4:0.25 | mi4 ré4 | " +
+      "ré4 ré4:0.75 mi4:0.25 | ré4:1.5 ré4:0.5 | mi4:0.75 ré4:0.25 mi4:0.75 fa#4:0.25 | sol4:2 | " +
+      "do4 do4:0.75 mi4:0.25 | sol4:1.5 fa4:0.5 | mi4:0.75 ré4:0.25 mi4:0.75 fa4:0.25 | mi4 ré4 | " +
+      "ré4 ré4:0.75 mi4:0.25 | ré4:1.5 ré4:0.5 | mi4:0.75 ré4:0.25 mi4:0.75 fa#4:0.25 | sol4:2 | " +
+      "do4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 | do4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 | do4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 | fa4 ré4 | " +
+      "si3:0.5 ré4:0.5 ré4:0.5 ré4:0.5 | si3:0.5 ré4:0.5 ré4:0.5 ré4:0.5 | sol4:0.5 fa4:0.5 mi4:0.5 ré4:0.5 | do4:2",
     syllabes: [
-      "Un cro-co-di-le, s'en al-lant à la guer-re, Di-sait au re-voir à ses pe-tits en-fants. " +
-      "Traî-nant sa queue, sa queue dans la pous-siè-re, Il s'en al-lait com-bat-tre les é-lé-phants. " +
-      "Ah ! les cro-cro-cro, les cro-cro-cro, les cro-co-di-les " +
-      "Sur les bords du Nil, ils sont par-tis, n'en par-lons plus.",
-      "Il fre-don-nait u-ne mar-che mi-li-tai-re Dont il mâ-chait les mots à gros-ses dents _ " +
-      "Quand il ou-vrait la gueu-le tout en-tiè-re, On cro-yait voir ses en-ne-mis de-dans _",
+      "Un cro-co-dile, s'en al-lant à la guer-re, Di-sait au r'voir à ses pe-tits en-fants. " +
+      "Traî-nant sa queue, sa queue dans la pous-siè-re, Il s'en al-lait com-battre les é-lé-phants. " +
+      "Ah ! les cro, cro, cro, les cro, cro, cro, les cro-co-di-les, Sur les bords du Nil, ils sont par-tis, n'en par-lons plus~(bis) !",
+      "Il fre-don-nait un' mar-che mi-li-tai-re, Dont il mâ-chait les mots à gros-ses dents. " +
+      "Quand il ou-vrait la gueul' tout en-tiè-re, On cro-yait voir ses en-ne-mis de-dans.",
     ],
   },
   paroles:

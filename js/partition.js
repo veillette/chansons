@@ -21,14 +21,14 @@
   const LETTRES = { do: "C", re: "D", mi: "E", fa: "F", sol: "G", la: "A", si: "B" };
   // Durées écrivables en ABC, en croches (L:1/8), de la plus longue à la plus courte.
   // En 6/8 (temps de 3 croches), pas de blanche : 5 croches = noire pointée + noire.
-  const LONGUEURS = [8, 6, 4, 3, 2, 1, 0.5];
-  const LONGUEURS_TERNAIRES = [6, 3, 2, 1, 0.5];
+  const LONGUEURS = [8, 6, 4, 3, 2, 1.5, 1, 0.5];
+  const LONGUEURS_TERNAIRES = [6, 3, 2, 1.5, 1, 0.5];
   // Mise en page (unités d'abcjs) : largeur des portées, place laissée aux
   // notes après la clé, et largeur moyenne d'une lettre des paroles.
   const LARGEUR_PORTEE = 600;
   const LARGEUR_UTILE = 560;
   const TAILLE_PAROLES = 14; // points ; 1 pt = 4/3 unités
-  const CHASSE = ((TAILLE_PAROLES * 4) / 3) * 0.42; // largeur moyenne d'une lettre d'Andika
+  const CHASSE = ((TAILLE_PAROLES * 4) / 3) * 0.45; // largeur moyenne d'une lettre d'Andika
   const TETE = 20; // place minimale d'une note
 
   function lireMesure(melodie) {
@@ -62,7 +62,7 @@
   }
 
   function texteLongueur(l) {
-    return l === 1 ? "" : l === 0.5 ? "/2" : String(l);
+    return l === 1 ? "" : l === 0.5 ? "/2" : l === 1.5 ? "3/2" : String(l);
   }
 
   /* Découpe la mélodie en mesures. Chaque évènement : { note (null = silence),
@@ -170,7 +170,7 @@
         mesure.map((ev) => {
           let texte = 0;
           if (ev.note && ev.syllabe) {
-            texte = Math.max(0, ...vers.map((v) => (v[rang] ? v[rang].texte.length : 0))) * CHASSE + 5;
+            texte = Math.max(0, ...vers.map((v) => (v[rang] ? v[rang].texte.length : 0))) * CHASSE + 7;
             rang++;
           }
           return { duree: ev.longueur, texte };

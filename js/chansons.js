@@ -111,11 +111,14 @@
   function pagesPartition(melodie) {
     const nb = window.Partition.lignes(melodie);
     const couplets = Math.max(1, window.Partition.couplets(melodie).length);
-    const max = Math.max(2, Math.floor(22 / (2.5 + couplets))); // 6 portées, 4 avec 2 ou 3 couplets
+    const max = Math.max(2, Math.floor(26 / (2.25 + couplets))); // 8 portées, 6 avec 2 couplets, 4 avec 3
     const pages = Math.ceil(nb / max);
-    const parPage = Math.ceil(nb / pages);
     const tranches = [];
-    for (let debut = 0; debut < nb; debut += parPage) tranches.push([debut, Math.min(nb, debut + parPage)]);
+    for (let i = 0, debut = 0; i < pages; i++) {
+      const fin = debut + Math.ceil((nb - debut) / (pages - i));
+      tranches.push([debut, fin]);
+      debut = fin;
+    }
     return tranches;
   }
 
