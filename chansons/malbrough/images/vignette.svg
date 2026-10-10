@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" width="400" height="270">
+
+<rect x="0" y="0" width="400" height="270" fill="#fff4e6"/>
+<rect x="0" y="220" width="400" height="50" fill="#8ce99a"/>
+<g transform="translate(200 240) scale(0.4 0.4)"><rect x="-70" y="-420" width="140" height="420" fill="#e9ecef"/><polygon points="-90,-418 0,-570 90,-418" fill="#c92a2a"/><path d="M -26 -310 L -26 -360 Q 0 -390 26 -360 L 26 -310 Z" fill="#ffe066"/><rect x="-40" y="-314" width="80" height="12" rx="4" fill="#c6c8cb"/><rect x="-70" y="-260" width="40" height="14" rx="3" fill="#d8dbde"/><rect x="-10" y="-220" width="40" height="14" rx="3" fill="#d8dbde"/><rect x="-70" y="-180" width="40" height="14" rx="3" fill="#d8dbde"/><rect x="-10" y="-140" width="40" height="14" rx="3" fill="#d8dbde"/><rect x="-70" y="-100" width="40" height="14" rx="3" fill="#d8dbde"/><rect x="-10" y="-60" width="40" height="14" rx="3" fill="#d8dbde"/></g>
+<g transform="translate(320 180) scale(0.5 0.5)"><rect x="-60" y="0" width="120" height="90" rx="6" fill="#c92a2a"/><ellipse cx="0" cy="90" rx="60" ry="14" fill="#c92a2a"/><ellipse cx="0" cy="0" rx="60" ry="14" fill="#fff4e6" stroke="#c92a2a" stroke-width="3"/><path d="M -60 10 L -30 80 L 0 10 L 30 80 L 60 10" fill="none" stroke="#ffd43b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

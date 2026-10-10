@@ -47,6 +47,23 @@ sont dessinées par programme (voir plus bas).
 | Mon âne, mon âne | chanson à accumulation |
 | Il court, il court, le furet | chanson à jouer |
 | Ah ! vous dirai-je, maman | comptine |
+| Cadet Rousselle | chanson à rire |
+| Le bon roi Dagobert | chanson à rire |
+| Jean Petit qui danse | chanson à gestes |
+| Il était une bergère | chanson à refrain |
+| Nous n'irons plus au bois | ronde |
+| Compère Guilleri | chanson à rire |
+| Il était une dame Tartine | comptine gourmande |
+| En passant par la Lorraine | chanson à refrain |
+| Malbrough s'en va-t-en guerre | chanson d'autrefois |
+| Mon beau sapin | chant de Noël |
+
+Les airs ont été vérifiés sur des partitions de référence : celles des articles de
+Wikipédia et les recueils transcrits en notation ABC sur
+[abcnotation.com](https://abcnotation.com) (*Chants et chansons populaires de la
+France*, 1858 ; *Le livre des chansons* d'Henri Davenson ; les répertoires de
+galouvielle.free.fr…). Ils sont transposés en do majeur (mi mineur pour *Jean Petit
+qui danse*) pour rester dans une tessiture d'enfant.
 
 ## Voir le site
 
