@@ -11,14 +11,17 @@ Chansonnier.ajouter({
     "Sur la scène du petit théâtre, les marionnettes dansent, font trois petits tours, puis s'en vont. " +
     "Une comptine à mimer avec les mains : on les fait tourner comme des marionnettes, puis on les cache dans son dos.",
   melodie: {
-    tempo: 96,
+    tempo: 104,
     mesure: "2/4",
+    anacrouse: 1,
     notes:
-      "do4:0.5 mi4:0.5 sol4 | sol4 sol4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4:0.5 mi4:0.5 ré4 | do4:2 | " +
-      "do4:0.5 mi4:0.5 sol4 | sol4 sol4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 | mi4 ré4 | do4:2",
+      "mi4:0.5 mi4:0.5 | do4 mi4 | sol4 fa4:0.5 mi4:0.5 | fa4:0.5 ré4:0.5 do4:0.5 si3:0.5 | do4:0.5 sol3:0.5 mi4:0.5 mi4:0.5 | do4 mi4 | sol4 fa4:0.5 mi4:0.5 | fa4:0.5 ré4:0.5 do4:0.5 si3:0.5 | do4 mi4:0.5 mi4:0.5 | " +
+      "do4 mi4 | ré4 do4:0.5 si3:0.5 | la3:0.5 sol3:0.5 la3:0.5 si3:0.5 | do4:0.5 sol3:0.5 mi4:0.5 mi4:0.5 | do4 mi4 | ré4 do4:0.5 si3:0.5 | la3:0.5 sol3:0.5 la3:0.5 si3:0.5 | do4",
     syllabes: [
-      "Ain-si font, font, font Les pe-tites ma-ri-o-net-tes, " +
-      "Ain-si font, font, font, Trois p'tits tours et puis s'en vont.",
+      "Ain-si font, font, font, Les pe-ti-tes ma-rion-net-tes, " +
+      "Ain-si font, font, font, Trois p'tits tours et puis s'en vont. " +
+      "Les mains aux cô-tés, Sau-tez, sau-tez, ma-rion-net-tes, " +
+      "Les mains aux cô-tés, Ma-rion-nettes, re-com-men-cez !",
     ],
   },
   paroles:

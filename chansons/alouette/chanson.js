@@ -11,18 +11,18 @@ Chansonnier.ajouter({
     "La tête, le bec, les yeux, le cou… À chaque couplet, la liste s'allonge et il faut tout se rappeler ! " +
     "Une chanson à répondre, très aimée au Québec et en France : un meneur chante, les autres répètent.",
   melodie: {
-    tempo: 112,
+    tempo: 120,
     mesure: "4/4",
     notes:
-      "do4 ré4:0.5 mi4:0.5 mi4 mi4 | ré4:0.5 do4:0.5 ré4:0.5 mi4:0.5 do4 sol3 | " +
-      "do4 ré4:0.5 mi4:0.5 mi4 mi4 | ré4:0.5 do4:0.5 ré4:0.5 mi4:0.5 do4:2 | " +
-      "do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 ré4:0.5 mi4:0.5 | do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 ré4:0.5 mi4:0.5 | " +
-      "mi4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 | sol4:0.5 sol4:0.5 sol4:0.5 sol4:0.5 fa4:0.5 fa4:0.5 fa4:0.5 fa4:0.5 | " +
-      "mi4:2 ré4 si3 | do4:4",
+      "do4:1.5 ré4:0.5 mi4 mi4 | ré4:0.5 do4:0.5 ré4:0.5 mi4:0.5 do4 sol3 | do4:1.5 ré4:0.5 mi4 mi4 | ré4:0.5 do4:0.5 ré4:0.5 mi4:0.5 do4:2 | " +
+      "do4:0.5 do4:0.5 do4:0.5 do4:0.5 do4:0.5 mi4:0.5 sol4 | sol4:0.5 la4:0.5 sol4:0.5 fa4:0.5 mi4:0.5 ré4:0.5 do4 | " +
+      "sol4:0.5 sol4:0.5 sol4 sol3:0.5 sol3:0.5 sol3 | sol4:0.5 sol4:0.5 sol4 sol3:0.5 sol3:0.5 sol3 | sol4 fa4 mi4 ré4 | " +
+      "do4:1.5 ré4:0.5 mi4 mi4 | ré4:0.5 do4:0.5 ré4:0.5 mi4:0.5 do4 sol3 | do4:1.5 ré4:0.5 mi4 mi4 | ré4:0.5 do4:0.5 ré4:0.5 mi4:0.5 do4:2",
     syllabes: [
-      "A-lou-et-te, gen-til-le a-lou-et-te, A-lou-et-te, je te plu-me _ rai. " +
-      "Je te plu-me-rai la tê-te, Je te plu-me-rai la tê-te, " +
-      "Et la tê-te, et la tê-te, A-lou-et-te, a-lou-et-te, Ah ! _ _ _",
+      "A-lou-et-te, gen-til-le~a-lou-et-te, A-lou-et-te, je te plu-me-rai. " +
+      "Je te plu-me-rai la tête, Je te plu-me-rai la tête, " +
+      "Et la tête, et la tête, A-lou-ette, a-lou-ette, Ah ! _ _ _ " +
+      "A-lou-et-te, gen-til-le~a-lou-et-te, A-lou-et-te, je te plu-me-rai.",
     ],
   },
   paroles:
