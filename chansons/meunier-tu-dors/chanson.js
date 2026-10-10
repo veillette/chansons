@@ -11,16 +11,17 @@ Chansonnier.ajouter({
     "Le meunier fait la sieste sur ses sacs de farine… et pendant ce temps, le vent se lève ! " +
     "Une chanson à gestes : on fait tourner les bras comme les ailes du moulin, de plus en plus vite.",
   melodie: {
-    tempo: 96,
-    mesure: "2/4",
+    tempo: 132,
+    mesure: "12/8",
+    anacrouse: 1.5,
     notes:
-      "do4:0.5 do4:0.5 ré4 | mi4:2 | mi4:0.5 fa4:0.5 sol4 | mi4:0.5 fa4:0.5 sol4 | la4 sol4 | fa4 mi4 | " +
-      "do4:0.5 do4:0.5 ré4 | mi4:2 | mi4:0.5 fa4:0.5 sol4 | mi4:0.5 fa4:0.5 sol4 | fa4 ré4 | do4:2 | " +
-      "sol4:0.5 la4:0.5 sol4 | fa4:0.5 mi4:0.5 fa4 | sol4 la4 | sol4 sol4 | " +
-      "sol4:0.5 la4:0.5 sol4 | fa4:0.5 mi4:0.5 ré4 | mi4 ré4 | do4:2",
+      "sol3:1.5 | do4:4.5 mi4:1.5 | do4:4.5 si3 do4:0.5 | ré4:1.5 ré4 ré4:0.5 ré4:1.5 do4 ré4:0.5 | mi4:3 do4:1.5 sol3:1.5 | " +
+      "do4:4.5 mi4:1.5 | do4:4.5 si3 do4:0.5 | ré4:1.5 ré4 ré4:0.5 ré4:1.5 mi4 ré4:0.5 | " +
+      "do4:1.5 mi4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 mi4 mi4:0.5 | sol4 sol4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 sol4 sol4:0.5 | mi4:1.5 mi4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 mi4:0.5 mi4 mi4:0.5 | sol4 sol4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 sol4 sol4:0.5 | do4:4.5",
     syllabes: [
-      "Meu-nier, tu dors, Ton mou-lin, ton mou-lin va trop vi-te. " +
+      "Meu-nier, tu dors, Ton mou-lin, ton mou-lin va trop vi-te, " +
       "Meu-nier, tu dors, Ton mou-lin, ton mou-lin va trop fort. " +
+      "Ton mou-lin, ton mou-lin va trop vi-te, Ton mou-lin, ton mou-lin va trop fort, " +
       "Ton mou-lin, ton mou-lin va trop vi-te, Ton mou-lin, ton mou-lin va trop fort.",
     ],
   },

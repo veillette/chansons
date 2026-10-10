@@ -11,18 +11,18 @@ Chansonnier.ajouter({
     "On l'attrape par la queue, on la trempe dans l'huile, on la met dans un tiroir… " +
     "Mais la petite souris verte a toujours le dernier mot ! Une comptine rigolote pour jouer et pour compter.",
   melodie: {
-    tempo: 96,
+    tempo: 100,
     mesure: "2/4",
     notes:
-      "do4:0.5 do4:0.5 mi4:0.5 sol4:0.5 | sol4 sol4 | sol4:0.5 sol4:0.5 mi4:0.5 do4:0.5 | do4 do4 | " +
-      "fa4:0.5 fa4:0.5 fa4:0.5 fa4:0.5 | mi4:0.5 mi4:0.5 mi4 | ré4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 | do4:0.5 do4:0.5 do4 | " +
-      "sol4:0.5 sol4:0.5 sol4 | mi4:0.5 mi4:0.5 mi4 | sol4:0.5 sol4:0.5 sol4:0.5 sol4:0.5 | mi4 mi4 | " +
-      "fa4:0.5 fa4:0.5 fa4:0.5 fa4:0.5 | ré4:2 | ré4:0.5 mi4:0.5 fa4:0.5 mi4:0.5 | ré4 do4 | mi4 do4",
+      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | do4 sol3 | do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | do4 sol3 | " +
+      "fa4:0.5 mi4:0.5 ré4:0.5 mi4:0.5 | fa4:0.5 mi4:0.5 ré4 | fa4:0.5 mi4:0.5 ré4:0.5 mi4:0.5 | fa4:0.5 mi4:0.5 ré4 | " +
+      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | do4 sol3 | do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | do4 sol3 | " +
+      "do4:0.5 do4:0.5 do4:0.5 do4:0.5 | ré4:2 | do4:0.5 do4:0.5 ré4:0.5 do4:0.5 | ré4:0.5 sol4:0.5 do4 | sol4 do4",
     syllabes: [
       "U-ne sou-ris ver-te Qui cou-rait dans l'her-be, " +
       "Je l'at-tra-pe par la queue, Je la mon-tre~à ces mes-sieurs. " +
       "Ces mes-sieurs me di-sent : « Trem-pez-la dans l'hui-le, " +
-      "Trem-pez-la dans l'eau, Ça fe-ra~un es-car-got Tout chaud. »",
+      "Trem-pez-la dans l'eau, Ça fe-ra un es-car-got Tout chaud. »",
     ],
   },
   paroles:

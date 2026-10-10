@@ -11,17 +11,16 @@ Chansonnier.ajouter({
     "Dans le potager, on plante les choux… avec le doigt, avec le pied, avec le genou, avec le coude, et même avec le nez ! " +
     "À chaque couplet, on montre la partie du corps en chantant.",
   melodie: {
-    tempo: 96,
+    tempo: 104,
     mesure: "2/4",
     notes:
-      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 mi4 | ré4:0.5 ré4:0.5 ré4:0.5 mi4:0.5 | fa4:0.5 fa4:0.5 mi4 | " +
-      "do4:0.5 do4:0.5 do4:0.5 ré4:0.5 | mi4:0.5 mi4:0.5 mi4 | ré4:0.5 ré4:0.5 mi4:0.5 ré4:0.5 | do4:0.5 ré4:0.5 do4",
+      "sol3:0.5 sol3:0.5 mi4:0.5 mi4:0.5 | ré4:0.5 mi4:0.5 do4 | si3:0.5 do4:0.5 ré4:0.5 ré4:0.5 | do4:0.5 ré4:0.5 mi4:0.5 do4:0.5 | sol3:0.5 sol3:0.5 mi4:0.5 mi4:0.5 | ré4:0.5 mi4:0.5 do4 | si3:0.5 do4:0.5 ré4:0.5 fa4:0.5 | mi4:0.5 ré4:0.5 do4",
     syllabes: [
-      "Sa-vez-vous plan-ter les choux, À la mo-de~à la mo-de, " +
+      "Sa-vez-vous plan-ter les choux, À la mo-de, à la mo-de, " +
       "Sa-vez-vous plan-ter les choux, À la mo-de de chez nous ?",
-      "On les plan-te~a-vec le doigt, À la mo-de~à la mo-de, " +
+      "On les plan-te~a-vec le doigt, À la mo-de, à la mo-de, " +
       "On les plan-te~a-vec le doigt, À la mo-de de chez nous.",
-      "On les plan-te~a-vec le pied, À la mo-de~à la mo-de, " +
+      "On les plan-te~a-vec le pied, À la mo-de, à la mo-de, " +
       "On les plan-te~a-vec le pied, À la mo-de de chez nous.",
     ],
   },

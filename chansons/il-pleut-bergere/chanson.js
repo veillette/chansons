@@ -15,22 +15,22 @@ Chansonnier.ajouter({
     mesure: "6/8",
     anacrouse: 0.5,
     notes:
-      "sol3:0.5 | do4 do4:0.5 do4 ré4:0.5 | mi4:1.5 do4 mi4:0.5 | mi4 mi4:0.5 fa4 mi4:0.5 | ré4:2.5 ré4:0.5 | " +
-      "ré4 ré4:0.5 ré4 mi4:0.5 | fa4:1.5 ré4 mi4:0.5 | mi4 ré4:0.5 do4 si3:0.5 | do4:2.5 sol4:0.5 | " +
-      "sol4 sol4:0.5 la4 sol4:0.5 | fa4:1.5 mi4 fa4:0.5 | fa4 fa4:0.5 sol4 fa4:0.5 | mi4:2.5 mi4:0.5 | " +
-      "mi4 mi4:0.5 fa4 mi4:0.5 | ré4:1.5 do4 ré4:0.5 | ré4 mi4:0.5 ré4 si3:0.5 | do4:2.5",
+      "mi4:0.5 | sol4 mi4:0.5 sol4 mi4:0.5 | do4:1.5 sol3 -:0.5 | do4:0.5 si3:0.5 do4:0.5 ré4 ré4:0.5 | mi4:3 | " +
+      "mi4:0.5 ré4:0.5 mi4:0.5 fa4 fa4:0.5 | sol4:1.5 mi4 -:0.5 | sol4:0.5 la4:0.5 sol4:0.5 fa4 mi4:0.5 | mi4:1.5 ré4 -:0.5 | " +
+      "ré4:0.5 mi4:0.5 ré4:0.5 fa4 fa4:0.5 | mi4:1.5 sol4 -:0.5 | fa4:0.5 mi4:0.5 ré4:0.5 mi4 do4:0.5 | mi4:1.5 ré4 mi4:0.5 | " +
+      "sol4 mi4:0.5 sol4 mi4:0.5 | fa4:1.5 la4:1.5 | sol4:0.5 la4:0.5 sol4:0.5 ré4 mi4:0.5 | do4:2.5",
     syllabes: [
       "Il pleut, il pleut, ber-gè-re, Pres-se tes blancs mou-tons, " +
-      "Al-lons sous ma chau-miè-re, Ber-gè-re, vi-te~al-lons. " +
-      "J'en-tends sur le feuil-la-ge L'eau qui tom-be~à grand bruit ; " +
+      "Al-lons sous ma chau-miè-re, Ber-gè-re, vi-te~al-lons _. " +
+      "J'en-tends sur le feuil-la-ge L'eau qui tom-be~à grand bruit _ ; " +
       "Voi-ci, voi-ci l'o-ra-ge, Voi-là l'é-clair qui luit.",
       "En-tends-tu le ton-ner-re ? Il rou-le~en ap-pro-chant ; " +
-      "Prends un a-bri, ber-gè-re, À ma droi-te~en mar-chant. " +
-      "Je vois no-tre ca-ba-ne… Et, tiens, voi-ci ve-nir " +
+      "Prends un a-bri, ber-gè-re, À ma droi-te~en mar-chant _. " +
+      "Je vois no-tre ca-ba-ne… Et, tiens, voi-ci ve-nir _ " +
       "Ma mè-re~et ma sœur An-ne Qui vont l'é-ta-ble~ou-vrir.",
       "Bon-soir, bon-soir, ma mè-re, Ma sœur An-ne, bon-soir ! " +
-      "J'a-mè-ne ma ber-gè-re Près de nous pour ce soir. " +
-      "Va te sé-cher, ma mi-e, Au-près de nos ti-sons. " +
+      "J'a-mè-ne ma ber-gè-re Près de nous pour ce soir _. " +
+      "Va te sé-cher, ma mi-e, Au-près de nos ti-sons _. " +
       "Sœur, fais-lui com-pa-gni-e ; En-trez, pe-tits mou-tons.",
     ],
   },

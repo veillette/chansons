@@ -14,8 +14,8 @@ Chansonnier.ajouter({
     tempo: 66,
     mesure: "2/4",
     notes:
-      "sol4 mi4 | sol4:0.5 sol4:0.5 mi4 | fa4:0.5 mi4:0.5 ré4:0.5 mi4:0.5 | fa4 sol4 | mi4 mi4 | " +
-      "sol4 mi4 | sol4:0.5 sol4:0.5 mi4 | fa4:0.5 mi4:0.5 ré4:0.5 mi4:0.5 | ré4 si3 | do4:2",
+      "mi4 do4 | mi4:0.5 mi4:0.5 do4 | ré4:0.5 mi4:0.5 fa4:0.5 mi4:0.5 | ré4:0.5 sol4:0.5 mi4:0.5 do4:0.5 | " +
+      "mi4 do4 | mi4:0.5 mi4:0.5 do4 | ré4:0.5 mi4:0.5 fa4:0.5 mi4:0.5 | ré4:0.5 sol4:0.5 do4",
     syllabes: [
       "Do-do, l'en-fant do, L'en-fant dor-mi-ra bien vi-te. " +
       "Do-do, l'en-fant do, L'en-fant dor-mi-ra bien-tôt.",

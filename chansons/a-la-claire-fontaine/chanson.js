@@ -11,19 +11,19 @@ Chansonnier.ajouter({
     "Une promenade jusqu'à la fontaine, une baignade dans l'eau claire, puis une sieste sous le grand chêne " +
     "où chante un rossignol. Une très vieille chanson, douce comme une berceuse, qu'on chante en France comme au Québec.",
   melodie: {
-    tempo: 96,
-    mesure: "4/4",
+    tempo: 84,
+    mesure: "2/4",
     notes:
-      "do4 do4:0.5 mi4:0.5 mi4 ré4:0.5 mi4:0.5 | ré4:0.5 do4:1.5 do4 do4:0.5 mi4:0.5 | mi4 ré4:0.5 mi4:0.5 mi4:2 | " +
-      "mi4 mi4:0.5 ré4:0.5 do4 mi4:0.5 sol4:0.5 | mi4:2 sol4 sol4:0.5 mi4:0.5 | do4 mi4:0.5 ré4:0.5 ré4:2 | " +
-      "sol4 sol4:0.5 mi4:0.5 sol4 sol4:0.5 mi4:0.5 | do4:2 do4 mi4:0.5 ré4:0.5 | do4 mi4:0.5 ré4:0.5 ré4:0.5 ré4:0.5 do4",
+      "do4 do4:0.5 mi4:0.5 | mi4:0.5 ré4:0.5 mi4:0.5 ré4:0.5 | do4 do4:0.5 mi4:0.5 | mi4:0.5 ré4:0.5 mi4 | " +
+      "mi4 mi4:0.5 ré4:0.5 | do4:0.5 mi4:0.5 sol4:0.5 mi4:0.5 | sol4 sol4:0.5 mi4:0.5 | do4:0.5 mi4:0.5 ré4 | " +
+      "do4 do4:0.5 mi4:0.5 | mi4:0.5 ré4:0.25 do4:0.25 mi4:0.5 do4:0.5 | mi4 mi4:0.5 ré4:0.25 do4:0.25 | mi4:0.5 ré4:0.5 do4",
     syllabes: [
-      "À la clai-re fon-tai-ne _ M'en al-lant pro-me _ ner, " +
-      "J'ai trou-vé l'eau si bel-le Que je m'y suis bai _ gnée. " +
-      "Il y a long-temps que je t'ai-me, Ja-mais je ne t'ou-blie-rai.",
-      "Sous les feuil-les d'un chê-ne _ Je me suis fait sé _ cher. " +
-      "Sur la plus hau-te bran-che Un ros-si-gnol chan _ tait. " +
-      "Il y a long-temps que je t'ai-me, Ja-mais je ne t'ou-blie-rai.",
+      "À la clai-re fon-tai-ne M'en al-lant pro-me-ner, " +
+      "J'ai trou-vé l'eau si bel-le Que je m'y suis bai-gnée. " +
+      "Il y~a long-temps que je t'ai-me, Ja-mais je ne t'ou-blie-rai.",
+      "Sous les feuil-les d'un chê-ne Je me suis fait sé-cher. " +
+      "Sur la plus hau-te bran-che Un ros-si-gnol chan-tait. " +
+      "Il y~a long-temps que je t'ai-me, Ja-mais je ne t'ou-blie-rai.",
     ],
   },
   paroles:

@@ -791,3 +791,135 @@ def chene_branches(x, y, s=1.0, feuillage="#2f9e44", feuillage2="#40c057"):
 
 def marguerite(x, y, s=1.0, tige=70):
     return fleur(x, y, s, "#ffffff", "#fcc419", tige)
+
+
+# ---------------------------------------------------------------------------
+# Cadet Rousselle, En passant par la Lorraine, Nous n'irons plus au bois…
+# ---------------------------------------------------------------------------
+
+def hirondelle(x, y, s=1.0, flip=False, rot=0, couleur="#1c3d6e"):
+    """Hirondelle en vol, ailes ouvertes et queue fourchue, tête à droite."""
+    m = [poly([(-60, -4), (-118, -30), (-92, 0), (-120, 22), (-60, 8)], couleur),
+         chemin("M -20 -6 Q -40 -70 -110 -96 Q -50 -40 -30 4 Z", couleur),
+         ellipse(0, 0, 60, 20, couleur), ellipse(6, 8, 44, 11, "#fff"),
+         cercle(52, -6, 20, couleur), ellipse(58, 6, 12, 8, "#e8590c"),
+         cercle(60, -10, 4, "#fff"), cercle(61, -10, 2, ENCRE), poly([(70, -6), (88, -2), (70, 2)], "#343a40"),
+         chemin("M 10 -6 Q 0 -80 -60 -110 Q -10 -50 -6 4 Z", _assombrir(couleur, 0.85))]
+    return place(m, x, y, s, flip=flip, rot=rot)
+
+
+def nid(x, y, s=1.0, petits=3):
+    """Nid accroché sous un rebord, avec des têtes d'oisillons ; (x, y) = haut du nid."""
+    m = []
+    for k in range(petits):
+        px = (k - (petits - 1) / 2) * 30
+        m += [cercle(px, -4, 15, "#1c3d6e"), ellipse(px, 8, 9, 6, "#ffd43b"), cercle(px + 5, -8, 2.5, "#fff")]
+    m += [chemin("M -56 0 Q 0 70 56 0 Z", "#a0693a")]
+    for k in range(5):
+        m.append(chemin(f"M {-50 + k * 24} {4 + (k % 2) * 6} q 12 10 24 0", stroke="#7c4a1e", sw=3))
+    return place(m, x, y, s)
+
+
+def maison_sans_toit(x, y, s=1.0, mur="#ffe8cc", porte="#a0522d"):
+    """Maison dont il ne reste que les murs : ni poutres ni chevrons ; (x, y) = milieu de la base."""
+    m = [rect(-100, -150, 200, 150, mur), poly([(-100, -150), (0, -230), (100, -150)], mur),
+         rect(-28, -86, 56, 86, porte, rx=10), cercle(14, -42, 4, OR),
+         rect(-80, -120, 36, 34, "#a5d8ff", stroke="#fff", stroke_width=5),
+         rect(44, -120, 36, 34, "#a5d8ff", stroke="#fff", stroke_width=5),
+         chemin("M -100 -150 L 0 -230 L 100 -150", stroke=_assombrir(mur, 0.8), sw=6),
+         chemin("M -60 -40 l 18 -6 M 50 -20 l 16 4 M -84 -10 l 14 -4", stroke=_assombrir(mur, 0.75), sw=3)]
+    return place(m, x, y, s)
+
+
+def sabot(x, y, s=1.0, couleur="#c68642", rot=0, flip=False):
+    """Sabot de bois vu de côté, pointe à droite ; (x, y) = sous le talon."""
+    fonce = _assombrir(couleur, 0.75)
+    m = [chemin("M -50 0 L -54 -50 Q -50 -64 -30 -64 L 10 -60 Q 60 -54 84 -20 Q 92 0 70 0 Z", couleur),
+         chemin("M -40 -60 Q -10 -76 22 -58 Q -6 -44 -40 -50 Z", "#5c3a1e"),
+         chemin("M -50 0 L 70 0", stroke=fonce, sw=6), chemin("M 30 -40 q 20 6 36 22", stroke=fonce, sw=4)]
+    return place(m, x, y, s, flip=flip, rot=rot)
+
+
+def bouquet(x, y, s=1.0, fleurs=("#da77f2", "#f783ac", "#ffffff"), ruban="#fa5252"):
+    """Bouquet de fleurs (marjolaine) noué d'un ruban ; (x, y) = bas des tiges."""
+    m = [trait(-10, 0, -30, -110, "#2f9e44", 5), trait(0, 0, 0, -120, "#2f9e44", 5), trait(10, 0, 30, -110, "#2f9e44", 5)]
+    r = random.Random(7)
+    for k in range(16):
+        a = math.radians(-160 + k * 140 / 15)
+        rr = 40 + r.uniform(-10, 20)
+        m.append(cercle(math.cos(a) * rr * 0.9, -120 + math.sin(a) * rr * 0.7, 13, fleurs[k % len(fleurs)]))
+    for k in range(6):
+        m.append(ellipse(-40 + k * 16, -96 + (k % 2) * 10, 10, 5, "#40c057", rot=k * 30))
+    m += [poly([(-4, -40), (-34, -60), (-30, -26)], ruban), poly([(4, -40), (34, -60), (30, -26)], ruban), cercle(0, -40, 9, _assombrir(ruban, 0.8))]
+    return place(m, x, y, s)
+
+
+def laurier(x, y, s=1.0, coupe=False):
+    """Laurier (petit arbre aux feuilles pointues), ou sa souche s'il est coupé ; (x, y) = pied."""
+    if coupe:
+        m = [rect(-24, -40, 48, 40, "#8d5524", rx=6), ellipse(0, -40, 24, 9, "#e8c39e"),
+             chemin("M -10 -40 q 10 4 20 0", stroke="#a0693a", sw=3)]
+        for k in range(3):
+            m.append(ellipse(-60 + k * 50, -6, 18, 7, "#2f9e44", rot=-20 + k * 25))
+        return place(m, x, y, s)
+    m = [rect(-12, -110, 24, 110, "#8d5524", rx=6)]
+    r = random.Random(3)
+    for k in range(26):
+        a = r.uniform(0, 2 * math.pi)
+        rr = r.uniform(0, 80)
+        m.append(ellipse(math.cos(a) * rr, -190 + math.sin(a) * rr * 0.9, 24, 9, "#2f9e44" if k % 2 else "#37b24d",
+                         rot=r.uniform(0, 180)))
+    return place(m, x, y, s)
+
+
+def boule_noel(x, y, r=16, couleur="#fa5252"):
+    return g([cercle(x, y, r, couleur), cercle(x - r * 0.35, y - r * 0.35, r * 0.3, "#fff", opacity=0.6),
+              rect(x - 5, y - r - 6, 10, 7, OR)])
+
+
+def sapin_decore(x, y, s=1.0, neige=False, lumieres=True, cadeaux=True):
+    """Sapin de Noël avec boules, guirlande, bougies et étoile ; (x, y) = pied du tronc."""
+    m = [sapin(0, 0, 1.0, neige=neige)]
+    m.append(chemin("M -70 -70 Q 0 -40 76 -90 M -56 -150 Q 0 -120 60 -160 M -40 -220 Q 0 -200 42 -230",
+                    stroke=OR, sw=6, opacity=0.9))
+    couleurs = ("#fa5252", "#4dabf7", "#fcc419", "#cc5de8", "#ff922b")
+    for k, (bx, by) in enumerate([(-60, -48), (40, -60), (-20, -90), (64, -110), (-46, -126), (20, -150),
+                                  (-28, -190), (32, -200), (0, -250)]):
+        m.append(boule_noel(bx, by, 13, couleurs[k % len(couleurs)]))
+    if lumieres:
+        for bx, by in [(-76, -76), (76, -96), (-58, -156), (58, -166), (-40, -226), (40, -236)]:
+            m += [rect(bx - 4, by - 18, 8, 18, "#fff"), ellipse(bx, by - 24, 5, 8, "#ffd43b")]
+    m.append(etoile5(0, -290, 30, OR))
+    if cadeaux:
+        m += [cadeau(-90, 10, 0.8, "#fa5252", "#ffd43b"), cadeau(80, 10, 0.7, "#4dabf7", "#fff"), cadeau(10, 14, 0.55, "#cc5de8", "#ffd43b")]
+    return place(m, x, y, s)
+
+
+def cadeau(x, y, s=1.0, couleur="#fa5252", ruban="#ffd43b"):
+    """Paquet cadeau ; (x, y) = milieu du dessous."""
+    m = [rect(-40, -70, 80, 70, couleur, rx=4), rect(-46, -82, 92, 18, _assombrir(couleur, 0.85), rx=4),
+         rect(-7, -82, 14, 82, ruban), chemin("M 0 -82 Q -30 -110 -20 -84 Z M 0 -82 Q 30 -110 20 -84 Z", ruban)]
+    return place(m, x, y, s)
+
+
+def jouet_cheval(x, y, s=1.0, couleur="#fff4e6", selle="#fa5252"):
+    """Petit cheval de bois à bascule ; (x, y) = milieu du dessous."""
+    m = [chemin("M -90 0 Q 0 30 90 0", stroke="#c92a2a", sw=12),
+         trait(-50, -50, -60, 6, "#a0693a", 10), trait(50, -50, 60, 6, "#a0693a", 10),
+         ellipse(0, -66, 70, 32, couleur), rect(-24, -96, 48, 20, selle, rx=6),
+         chemin("M 46 -80 L 80 -150 L 112 -136 L 70 -64 Z", couleur), ellipse(100, -144, 26, 18, couleur),
+         chemin("M 54 -96 Q 60 -150 84 -160", stroke="#a0693a", sw=10), cercle(104, -150, 4, ENCRE),
+         chemin("M -70 -70 q -30 10 -30 40", stroke="#a0693a", sw=10)]
+    return place(m, x, y, s)
+
+
+def arbre_nu(x, y, s=1.0, couleur="#8d5524", neige=False):
+    """Arbre sans feuilles, l'hiver ; (x, y) = pied du tronc."""
+    m = [chemin("M -18 0 Q -10 -120 -14 -220 L 14 -220 Q 10 -120 18 0 Z", couleur)]
+    for x1, y1, x2, y2 in [(-8, -150, -90, -240), (8, -170, 100, -250), (0, -215, -40, -320), (4, -215, 50, -320),
+                           (-60, -210, -110, -210), (70, -225, 120, -230)]:
+        m.append(chemin(f"M {x1} {y1} Q {(x1 + x2) / 2} {(y1 + y2) / 2 - 20} {x2} {y2}", stroke=couleur, sw=10))
+    if neige:
+        for nx, ny in [(-90, -244), (100, -254), (-40, -324), (50, -324)]:
+            m.append(ellipse(nx, ny, 18, 7, "#fff"))
+    return place(m, x, y, s)
