@@ -129,6 +129,12 @@ barre est coupée en deux notes liées. Le nombre de mesures par portée dépend
 la place que prennent les syllabes, et une chanson trop longue continue sur la
 page suivante.
 
+Les tests font aussi relire le résultat ABC par abcjs pour vérifier les hauteurs,
+les durées, les silences, les liaisons et le placement des syllabes de tous les
+couplets. Une continuation liée reçoit un marqueur de prolongation dans les
+paroles ABC ; elle ne décale donc pas les syllabes suivantes. La ponctuation
+après `_` ou `*` reste attachée à la dernière syllabe chantée.
+
 Ses images sont dans `chansons/partitions/images/`.
 
 ## Ajouter une chanson

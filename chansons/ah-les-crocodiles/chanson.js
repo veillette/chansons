@@ -25,7 +25,7 @@ Chansonnier.ajouter({
       "Traî-nant sa queue, sa queue dans la pous-siè-re, Il s'en al-lait com-battre les é-lé-phants. " +
       "Ah ! les cro, cro, cro, les cro, cro, cro, les cro-co-di-les, Sur les bords du Nil, ils sont par-tis, n'en par-lons plus~(bis) !",
       "Il fre-don-nait un' mar-che mi-li-tai-re, Dont il mâ-chait les mots à gros-ses dents. " +
-      "Quand il ou-vrait la gueul' tout en-tiè-re, On cro-yait voir ses en-ne-mis de-dans.",
+      "Quand il ou-vrait la gueu-le tout en-tiè-re, On cro-yait voir ses en-ne-mis de-dans.",
     ],
   },
   paroles:

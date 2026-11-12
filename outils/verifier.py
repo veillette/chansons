@@ -93,7 +93,8 @@ def syllabes(couplet):
             continue  # rattachée à la syllabe précédente
         if mot == "«":
             continue  # rattaché à la syllabe suivante
-        unites.extend([mot] if mot in ("_", "*") else [p for p in mot.split("-") if p])
+        marqueur = re.fullmatch(r"([_*])[!?;:,.»…]*", mot)
+        unites.extend([marqueur[1]] if marqueur else [p for p in mot.split("-") if p])
     return unites
 
 

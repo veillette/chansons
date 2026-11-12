@@ -13,6 +13,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const ABCJS = require("../../lib/abcjs/abcjs-basic-min.js");
 
 const RACINE = path.resolve(__dirname, "..", "..");
 
@@ -137,6 +138,84 @@ test("syllabes : tirets, prolongations, ponctuation et guillemets", () => {
     hote(unites.map((u) => u.texte + u.suite)),
     ["Ah~! ", "vi-", "te~al-", "lons ", "_ ", "* ", "«~oui "]
   );
+});
+
+test("la ponctuation après une prolongation reste sur la syllabe chantée", () => {
+  assert.deepEqual(
+    hote(Partition.syllabes("cou-rir _, Ah ! mou _ rir ?").map((u) => u.texte)),
+    ["cou", "rir,", "_", "Ah~!", "mou", "_", "rir~?"]
+  );
+  assert.deepEqual(
+    hote(Partition.syllabes("al-lons _ ;").map((u) => u.texte)),
+    ["al", "lons~;", "_"]
+  );
+});
+
+function notesAbc(abc) {
+  const partition = ABCJS.parseOnly(abc)[0];
+  assert.equal(partition.warnings, undefined, JSON.stringify(partition.warnings));
+  return partition.lines.flatMap((l) => l.staff || []).flatMap((p) => p.voices.flat())
+    .filter((e) => e.el_type === "note");
+}
+
+test("abcjs place les paroles après les notes liées, y compris sur une page suivante", () => {
+  const melodie = {
+    mesure: "2/4", mesuresParLigne: 1,
+    notes: "do4:3 ré4 mi4:2",
+    syllabes: ["pre-mier mot", "un au-tre"],
+  };
+  const premiere = notesAbc(Partition.versAbc(melodie, { debut: 0, fin: 1 }));
+  assert.equal(premiere[0].lyric[0].syllable, "pre");
+  const suite = notesAbc(Partition.versAbc(melodie, { debut: 1 }));
+  assert.ok(!suite[0].lyric?.some((l) => l.syllable), "la note liée ne reçoit pas de nouvelle syllabe");
+  assert.equal(suite[1].lyric[0].syllable, "mier");
+  assert.equal(suite[1].lyric[1].syllable, "au");
+  assert.equal(suite[2].lyric[0].syllable, "mot");
+});
+
+test("abcjs conserve chaque note, durée et syllabe des 32 chansons", () => {
+  for (const chanson of chansons()) {
+    const melodie = chanson.melodie;
+    if (!melodie) continue;
+    const rendues = notesAbc(Partition.versAbc(melodie));
+    const evenements = Partition.mesures(melodie).flat();
+    const couplets = Partition.couplets(melodie).map(Partition.syllabes);
+    assert.equal(rendues.length, evenements.length, chanson.id);
+    let rang = 0;
+    rendues.forEach((note, i) => {
+      const ev = evenements[i];
+      const nom = `${chanson.id}, note ${i + 1}`;
+      assert.equal(note.duration, ev.longueur / 8, nom);
+      assert.equal(Boolean(note.rest), !ev.note, nom);
+      if (!ev.note) return;
+      const hauteur = { do: 0, re: 1, mi: 2, fa: 3, sol: 4, la: 5, si: 6 }[ev.note.nom]
+        + (ev.note.octave - 4) * 7;
+      assert.equal(note.pitches[0].pitch, hauteur, nom);
+      assert.equal(Boolean(note.pitches[0].startTie), ev.lie, nom);
+      if (!ev.syllabe) {
+        assert.ok(!note.lyric?.some((l) => l.syllable), `${nom} : continuation liée sans syllabe`);
+        return;
+      }
+      couplets.forEach((couplet, c) => {
+        const unite = couplet[rang];
+        if (!unite || unite.texte === "_" || unite.texte === "*") return;
+        const attendu = unite.texte.replaceAll("~", " ");
+        const obtenu = note.lyric?.[c]?.syllable.replaceAll("\u00a0", " ");
+        assert.equal(obtenu, attendu, `${nom}, couplet ${c + 1}`);
+      });
+      rang++;
+    });
+    assert.equal(rang, Partition.nombreDeNotes(melodie), chanson.id);
+  }
+});
+
+test("les crocodiles : le second couplet couvre les 42 notes avant le refrain commun", () => {
+  const melodie = chansons().find((c) => c.id === "ah-les-crocodiles").melodie;
+  assert.equal(Partition.syllabes(melodie.syllabes[1]).length, 42);
+  const notes = notesAbc(Partition.versAbc(melodie)).filter((n) => n.pitches);
+  assert.equal(notes[31].lyric[1].syllable, "re,");
+  assert.equal(notes[32].lyric[1].syllable, "On");
+  assert.equal(notes[41].lyric[1].syllable, "dans.");
 });
 
 test("chaque chanson donne une partition dont les paroles tombent juste", () => {

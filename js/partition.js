@@ -108,6 +108,10 @@
   function syllabes(couplet) {
     const unites = [];
     let prefixe = "";
+    const ponctuer = (texte) => {
+      const precedente = [...unites].reverse().find((u) => u.texte !== "_" && u.texte !== "*");
+      if (precedente) precedente.texte += /^[,.…]/.test(texte) ? texte : `~${texte}`;
+    };
     String(couplet || "")
       .trim()
       .split(/\s+/)
@@ -115,15 +119,17 @@
       .forEach((mot) => {
         // Ponctuation isolée (« Ah ! ») : collée à la syllabe voisine par une espace insécable.
         if (/^[!?;:,.»…]+$/.test(mot) && unites.length) {
-          unites[unites.length - 1].texte += `~${mot}`;
+          ponctuer(mot);
           return;
         }
         if (mot === "«") {
           prefixe = "«~";
           return;
         }
-        if (mot === "_" || mot === "*") {
-          unites.push({ texte: mot, suite: " " });
+        const marqueur = mot.match(/^([_*])([!?;:,.»…]*)$/);
+        if (marqueur) {
+          if (marqueur[2]) ponctuer(marqueur[2]);
+          unites.push({ texte: marqueur[1], suite: " " });
           return;
         }
         const parts = mot.split("-").filter(Boolean);
@@ -145,7 +151,8 @@
     return Array.isArray(s) ? s : s ? [s] : [];
   }
 
-  /* Les portées : [{ abc (musique), notes (nombre de syllabes à placer) }]. */
+  /* Les portées : [{ abc, notes (nombre de syllabes), positions (notes chantées :
+     true = début d'une note source, false = continuation liée) }]. */
   function portees(melodie) {
     const { groupe } = lireMesure(melodie);
     const liste = mesures(melodie);
@@ -208,6 +215,7 @@
     }
     return lignes.map((groupeMesures, numero) => {
       let nbNotes = 0;
+      const positions = [];
       const texte = groupeMesures
         .map((evenements, m) => {
           const alterees = {};
@@ -216,6 +224,7 @@
               // Une espace avant chaque temps : les croches d'un même temps sont ligaturées.
               const espace = i > 0 && Math.abs(ev.debut % groupe) < 1e-9 ? " " : "";
               if (!ev.note) return `${espace}z${texteLongueur(ev.longueur)}`;
+              positions.push(ev.syllabe);
               if (ev.syllabe) nbNotes++;
               const h = hauteur(ev.note);
               let signe = "";
@@ -229,7 +238,7 @@
           return `${musique} ${derniere ? "|]" : "|"}`;
         })
         .join(" ");
-      return { abc: texte, notes: nbNotes };
+      return { abc: texte, notes: nbNotes, positions };
     });
   }
 
@@ -250,7 +259,13 @@
       const morceaux = vers.map((unites, c) => {
         const tranche = unites.slice(curseurs[c], curseurs[c] + ligne.notes);
         curseurs[c] += ligne.notes;
-        return tranche;
+        // En ABC, chaque partie d'une note liée occupe une place dans w:.
+        // Elle prolonge la syllabe sans consommer celle de la note suivante.
+        if (!tranche.length && curseurs[c] - ligne.notes >= unites.length) return [];
+        let rang = 0;
+        return ligne.positions.map((debutNote) =>
+          debutNote ? tranche[rang++] || { texte: "*", suite: " " } : { texte: "_", suite: " " }
+        );
       });
       if (i < debut || i >= fin) return;
       corps.push(ligne.abc);
