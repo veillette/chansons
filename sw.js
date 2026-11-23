@@ -39,6 +39,7 @@ const INTERFACE = [
   "js/imposition.js",
   "js/impression.js",
   "js/pwa.js",
+  "js/copier-lien.js",
   "chansons/catalogue.js",
   "icones/icone.svg",
   "icones/icone-192.png",

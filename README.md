@@ -21,6 +21,8 @@ compilation). Seule dépendance : [abcjs](https://github.com/paulrosen/abcjs)
 Toutes les chansons sont **traditionnelles** ou anciennes (domaine public). Les illustrations
 sont dessinées par programme (voir plus bas).
 
+Dans le lecteur, **Copier le lien** partage la chanson ou le recueil à la page affichée.
+
 ## Les chansons
 
 | Chanson | Genre |
@@ -64,6 +66,20 @@ Wikipédia et les recueils transcrits en notation ABC sur
 France*, 1858 ; *Le livre des chansons* d'Henri Davenson ; les répertoires de
 galouvielle.free.fr…). Ils sont transposés en do majeur (mi mineur pour *Jean Petit
 qui danse*) pour rester dans une tessiture d'enfant.
+
+## Vérifier, préparer et prévisualiser
+
+Utiliser Node.js 26, Python 3 et rsync.
+
+```sh
+bash .github/verifier-site.sh
+bash .github/preparer-site.sh
+python3 -m http.server 8000 --directory _site
+```
+
+La publication teste les liens de lecture et le fonctionnement hors ligne dans le site préparé.
+Pour vérifier localement la liste des fichiers hors ligne, lancer
+`node .github/site-smoke.mjs _site --assets-only`.
 
 ## Voir le site
 

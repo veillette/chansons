@@ -6,6 +6,7 @@
   const position = document.getElementById("position");
   const precedent = document.getElementById("precedent");
   const suivant = document.getElementById("suivant");
+  const boutonCopier = document.getElementById("copier-lien");
   const boutonVoix = document.getElementById("voix");
   const boutonAir = document.getElementById("air");
 
@@ -83,6 +84,9 @@
     precedent.disabled = vue === 0;
     suivant.disabled = vue === vues.length - 1;
     history.replaceState(null, "", `#p${pages[0]}`);
+    boutonCopier.dataset.copyLink = `lire.html?${Chansonnier.parametre(chanson)}#p${pages[0]}`;
+    boutonCopier.nextElementSibling.textContent = "";
+    boutonCopier.hidden = location.protocol === "file:";
 
     // Précharger les images de la vue suivante.
     (vues[vue + 1] || []).forEach((i) => {
