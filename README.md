@@ -25,40 +25,9 @@ Dans le lecteur, **Copier le lien** partage la chanson ou le recueil à la page 
 
 ## Les chansons
 
-| Chanson | Genre |
-| --- | --- |
-| Au clair de la lune | berceuse |
-| Frère Jacques | comptine en canon |
-| Ah ! les crocodiles | chanson à mimer |
-| Une souris verte | comptine |
-| Fais dodo | berceuse |
-| Alouette | chanson à répondre |
-| Il était un petit navire | chanson de marins |
-| Sur le pont d'Avignon | ronde |
-| Promenons-nous dans les bois | comptine à jouer |
-| Ainsi font, font, font | jeu de doigts |
-| Meunier, tu dors | chanson à gestes |
-| Dodo, l'enfant do | berceuse |
-| À la claire fontaine | berceuse |
-| Une poule sur un mur | comptine |
-| Savez-vous planter les choux ? | chanson à gestes |
-| Il pleut, il pleut, bergère | chanson douce |
-| Pomme de reinette et pomme d'api | comptine à jouer |
-| Dans la forêt lointaine | chanson en canon |
-| Bateau sur l'eau | jeu de balancement |
-| Mon âne, mon âne | chanson à accumulation |
-| Il court, il court, le furet | chanson à jouer |
-| Ah ! vous dirai-je, maman | comptine |
-| Cadet Rousselle | chanson à rire |
-| Le bon roi Dagobert | chanson à rire |
-| Jean Petit qui danse | chanson à gestes |
-| Il était une bergère | chanson à refrain |
-| Nous n'irons plus au bois | ronde |
-| Compère Guilleri | chanson à rire |
-| Il était une dame Tartine | comptine gourmande |
-| En passant par la Lorraine | chanson à refrain |
-| Malbrough s'en va-t-en guerre | chanson d'autrefois |
-| Mon beau sapin | chant de Noël |
+La page d’accueil présente les titres et les genres à partir des fiches des
+chansons. Le recueil et la bibliothèque suivent l’ordre de
+[`chansons/catalogue.js`](chansons/catalogue.js).
 
 Les airs ont été vérifiés sur des partitions de référence : celles des articles de
 Wikipédia et les recueils transcrits en notation ABC sur
@@ -247,6 +216,10 @@ recueil, `sommaire` et `paroles`. Les pages `illustration` acceptent
 
 ## Organisation du code
 
+Les sources communes `js/imposition.js` et `js/navigation-lecture.js` sont
+maintenues dans Livres. Le script `tools/sync-site-helpers.mjs --write` du
+dépôt Origami met à jour les copies lorsque les dépôts sont côte à côte.
+
 ```
 index.html, lire.html, imprimer.html
 css/site.css        interface du site + règles d'impression
@@ -256,6 +229,7 @@ js/melodie.js       lecture des mélodies (Web Audio)
 js/partition.js     partitions (conversion en ABC, dessin par abcjs)
 js/bibliotheque.js  page d'accueil
 js/lecteur.js       lecteur
+js/navigation-lecture.js   navigation, gestes et doubles pages des lecteurs
 js/imposition.js    ordre des pages pour le livret
 js/impression.js    page d'impression
 js/pwa.js           enregistrement du service worker, bouton « Installer »

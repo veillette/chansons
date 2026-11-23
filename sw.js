@@ -36,6 +36,7 @@ const INTERFACE = [
   "lib/abcjs/abcjs-basic-min.js",
   "js/bibliotheque.js",
   "js/lecteur.js",
+  "js/navigation-lecture.js",
   "js/imposition.js",
   "js/impression.js",
   "js/pwa.js",
