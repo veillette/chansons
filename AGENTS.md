@@ -14,6 +14,7 @@
   avec `node tools/sync-site-helpers.mjs --write` depuis le dépôt Origami
   (qui porte le script de sync). Ne pas modifier ces copies seulement ici.
   Garder dans Chansons le rendu des chansons, la voix et les mélodies.
-- Avec Node.js 26, Python 3 et rsync, lancer `bash .github/verifier-site.sh`,
-  `bash .github/preparer-site.sh` et `node .github/site-smoke.mjs _site --assets-only`.
+- Utiliser Node.js 26 (`.nvmrc`), Python 3 et rsync. Lancer
+  `bash .github/verifier-site.sh`, `bash .github/preparer-site.sh` et
+  `node .github/site-smoke.mjs _site --assets-only`.
 - Rédiger les textes et les messages de commit en français.

@@ -38,7 +38,7 @@ qui danse*) pour rester dans une tessiture d'enfant.
 
 ## Vérifier, préparer et prévisualiser
 
-Utiliser Node.js 26, Python 3 et rsync.
+Utiliser Node.js 26 (`.nvmrc`), Python 3 et rsync.
 
 ```sh
 bash .github/verifier-site.sh
