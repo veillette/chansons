@@ -9,9 +9,11 @@
 - Le site fonctionne depuis le disque sans compilation ni CDN. `_site/`
   est l'artefact de publication. Ajouter les nouveaux scripts d'interface au
   cache `INTERFACE` de `sw.js`.
-- Maintenir `js/imposition.js` et `js/navigation-lecture.js` dans Livres, puis
-  recopier les sources avec `node tools/sync-site-helpers.mjs --write` dans
-  Origami. Garder ici le rendu des chansons, la voix et les mélodies.
+- Synchronisation à sens unique depuis Livres : éditer `js/copier-lien.js`,
+  `js/imposition.js` et `js/navigation-lecture.js` dans Livres, puis recopier
+  avec `node tools/sync-site-helpers.mjs --write` depuis le dépôt Origami
+  (qui porte le script de sync). Ne pas modifier ces copies seulement ici.
+  Garder dans Chansons le rendu des chansons, la voix et les mélodies.
 - Avec Node.js 26, Python 3 et rsync, lancer `bash .github/verifier-site.sh`,
   `bash .github/preparer-site.sh` et `node .github/site-smoke.mjs _site --assets-only`.
 - Rédiger les textes et les messages de commit en français.
